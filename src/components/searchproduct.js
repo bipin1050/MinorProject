@@ -4,6 +4,8 @@ import React, { useState } from "react";
 
 const Searchproduct = (props) => {
 
+  const products = props.products;
+
   const [searchValue, setSearchValue] = useState("");
 
   const handleInputValue = (event) => {
@@ -15,21 +17,14 @@ const Searchproduct = (props) => {
 
   const showClearButton = searchValue.length > 0;
 
-  const [products, setProducts] = useState([
-    { name: 'oil', price: 3000, quantity: 30, batchNumber: 343443, brand: 'tata', category: 'groceries' },
-    { name: 'soap', price: 1200, quantity: 50, batchNumber: 2345, brand: 'colgate', category: 'Pencil' },
-    { name: 'samphoo', price: 100, quantity: 200, batchNumber: 2345, brand: 'clinic', category: 'Copy' },
-    { name: 'toothpaste', price: 50, quantity: 1300, batchNumber: 2345, brand: 'Dabur', category: 'Book' }
-  ]);
-
   const computedProducts = products.filter((product) => {
     if (!searchValue.length) return product;
 
     let search = searchValue.toUpperCase();
 
     if (
-      product.name.toUpperCase().includes(search) || 
-      product.brand.toUpperCase().includes(search) || 
+      product.productName.toUpperCase().includes(search) || 
+      product.manufacturer.toUpperCase().includes(search) || 
       product.category.toUpperCase().includes(search)
     )
       return product;
@@ -65,7 +60,7 @@ const Searchproduct = (props) => {
             <th className="p-2 text-left">Price</th>
             <th className="p-2 text-left">Quantity</th>
             <th className="p-2 text-left">Batch Number</th>
-            <th className="p-2 text-left">Brand</th>
+            <th className="p-2 text-left">Manufacturer</th>
             <th className="p-2 text-left">Category</th>
             <th className="p-2 text-left">Action</th>
           </tr>
@@ -74,11 +69,11 @@ const Searchproduct = (props) => {
         <tbody className="divide-y divide-gray-200">
           {computedProducts.map((product, idx) => {
             return (<tr key={idx}>
-              <td className="p-2">{product.name}</td>
+              <td className="p-2">{product.productName}</td>
               <td className="p-2">{product.price}</td>
               <td className="p-2">{product.quantity}</td>
               <td className="p-2">{product.batchNumber}</td>
-              <td className="p-2">{product.brand}</td>
+              <td className="p-2">{product.manufacturer}</td>
               <td className="p-2">{product.category}</td>
               <td>
               </td>

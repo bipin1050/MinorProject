@@ -13,7 +13,8 @@ router.get('/',(req,res)=>{
     })
 })
 
-router.post('/',(req,res)=>{
+router.post('/existing',(req,res)=>{
+    return res.status(200).send({message:"hello"})
     const {productName,batchNumber,entryDate,quantity,}=req.body;
     let productId;
     connection.execute('select `productId` from product where `productName`=?',[productName],(error,result)=>{
@@ -25,6 +26,7 @@ router.post('/',(req,res)=>{
         })
     })
 })
+
 
 router.post('/new',(req,res)=>{
     const {productName,category,manufacturer,batchNumber,manufactureDate,entryDate,expiryDate,quantity,location,price,target}=req.body;
@@ -58,7 +60,7 @@ router.post('/new',(req,res)=>{
             if(error) return res.json({error:error});
             console.log("sucess")
         })
-        
+        //res.status(200).send({message: "entry added ?? "})
     })
 })
 

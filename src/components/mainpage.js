@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Addproduct from "./addproduct";
 import Dashboard from "./dashboard";
@@ -10,12 +11,14 @@ import Sellproduct from "./sellproduct";
 
 const Mainpage = () => {
 
-  const [products, setProducts] = useState([
-    {name: 'oil',       price: 3000,    quantity: 30,   batchNo: 'prod1'},
-    {name: 'soap',      price: 1200,    quantity: 50,   batchNo: 'prod2'},
-    {name: 'samphoo',   price: 100,     quantity: 200,  batchNo: 'prod3'},
-    {name: 'toothpaste',price: 50,      quantity: 1300, batchNo: 'prod4'}
-  ]);
+  const [products, setProducts] = useState();
+  
+  useEffect(()=>{
+    axios.get("http://localhost:5000/checkout")
+    .then((res)=>{
+      setProducts(res.data)
+    })
+  }, [])
 
   return (
     <DashboardNav>

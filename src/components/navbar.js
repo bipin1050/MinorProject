@@ -208,14 +208,6 @@ export default function DashboardNav({ children }) {
             <ListItemText primary={"Sell"} />
           </ListItemButton>
 
-          {/* {['Dashboard', 'Search Items', 'Add Items', 'Remove Item','Sell'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <DashboardSharp /> : <SearchIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
         </List>
         <Divider />
       </Drawer>

@@ -123,7 +123,7 @@ const Addproduct = (props) => {
         event.preventDefault();
         //const data = new FormData(event.currentTarget);
         //this is to sent to backend
-        axios.post("http://localhost:5000/entry",{
+        const obj = {
             productName: productName,
             batchNumber: batchNo,
             manufactureDate: manufactureDate,
@@ -131,12 +131,18 @@ const Addproduct = (props) => {
             expiryDate: expiryDate,
             quantity: quantity,
             price: unitPrice,
-        }).then((res)=>{
-            handleClearInput();
-            toast.error(res.response.data.message)
+        }
+        console.log("1")
+        console.log(obj)
+        const a = axios.post("http://localhost:5000/entry/existing",{...obj})
+        .then((res)=>{
+            // handleClearInput();
+            console.log(res);
+            //toast.error(res.response.data.message);
         }).catch((err)=>{
             console.log(err)
         })
+        console.log(a)
     }
 
 
