@@ -21,12 +21,11 @@ const Mainpage = () => {
                 </div>
             </navbar>
             <div>
-                {/* <Routes>
-                    <Route path ='/mainpage/' element={<Mainpage/>}/>
-                    <Route path ='/mainpage/addproduct' element={<Addproduct/>}/>
-                    <Route path ='/mainpage/pendingpurchase' element={<Pendingpurchase/>}/>
-                    <Route path ='/mainpage/pendingsell' element={<Pendingsell/>}/>
-                </Routes> */}
+                <Routes>
+                    <Route path ='/addproduct' element={<Addproduct/>}/>
+                    <Route path ='/pendingpurchase' element={<Pendingpurchase/>}/>
+                    <Route path ='/pendingsell' element={<Pendingsell/>}/>
+                </Routes>
             </div>
             <footer>
 
