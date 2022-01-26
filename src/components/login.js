@@ -19,18 +19,18 @@ const Login = () => {
                             <div>
                                 <label>Username
                                     <br/>
-                                    <input type = "text" className='rounded-lg'/>
+                                    <input type = "text" className='rounded-lg bg-zinc-500'/>
                                 </label>
                                 <br /><br/>
                                 <label>Password
                                     <br/>
-                                    <input type="password" className='rounded-lg'/>
+                                    <input type="password" className='rounded-lg bg-zinc-500'/>
                                 </label>
                             </div>
                             <br/><br/>
-                            <div>
+                            <div className='flex justify-center'>
                                 <Link to = "/mainpage">
-                                    <input type = "button" value="Login"/>
+                                    <input type = "button" value="Login" className='bg-green-600 px-16 py-3 rounded-full hover:bg-white hover:text-green-600'/>
                                 </Link>
                             </div>
                         </form>
