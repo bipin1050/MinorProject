@@ -19,12 +19,12 @@ const Login = () => {
                             <div>
                                 <label>Username
                                     <br/>
-                                    <input type = "text" className='rounded-lg bg-zinc-500'/>
+                                    <input type = "text" className='rounded-lg bg-zinc-500 focus:outline-none focus:shadow-2xl'/>
                                 </label>
                                 <br /><br/>
                                 <label>Password
                                     <br/>
-                                    <input type="password" className='rounded-lg bg-zinc-500'/>
+                                    <input type="password" className='rounded-lg bg-zinc-500 focus:outline-none'/>
                                 </label>
                             </div>
                             <br/><br/>
