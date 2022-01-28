@@ -7,7 +7,7 @@ const Login = () => {
                 <img src={require('../images/ims.jpg')} className ='h-screen w-full' alt="LOGO" ></img>
             </div>
             <div className='w-1/3 h-screen float-left bg-zinc-800 text-white'>
-                <div className='pt-52'>
+                <div className='pt-52 '>
                     <div className='flex justify-center'>
                     <img src={require('../images/download.jpg')}alt="LOGO" width="100px"></img>
                     </div>
@@ -19,12 +19,12 @@ const Login = () => {
                             <div>
                                 <label>Username
                                     <br/>
-                                    <input type = "text" className='rounded-lg bg-zinc-500 focus:outline-none focus:shadow-2xl'/>
+                                    <input type = "text" className='rounded-lg bg-zinc-500 focus:outline-none focus:ring-4'/>
                                 </label>
                                 <br /><br/>
                                 <label>Password
                                     <br/>
-                                    <input type="password" className='rounded-lg bg-zinc-500 focus:outline-none'/>
+                                    <input type="password" className='rounded-lg bg-zinc-500 focus:outline-none focus:ring-4'/>
                                 </label>
                             </div>
                             <br/><br/>
