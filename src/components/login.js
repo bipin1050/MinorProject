@@ -30,7 +30,7 @@ const Login = () => {
                             <br/><br/>
                             <div className='flex justify-center'>
                                 <Link to = "/mainpage">
-                                    <input type = "button" value="Login" className='bg-green-600 px-16 py-2 rounded-full hover:bg-white hover:text-green-600'/>
+                                    <button className='bg-green-600 px-16 py-2 rounded-full hover:bg-white hover:text-green-600'>Login</button>
                                 </Link>
                             </div>
                         </form>

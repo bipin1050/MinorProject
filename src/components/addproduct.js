@@ -7,9 +7,9 @@ const Addproduct = () => {
                     <div className="container mx-auto w-1/4">
                         <input type ="text" placeholder="Product Name" className="h-9 w-full rounded-lg border-black"/><br/><br/>
                         <input type ="text" placeholder="Cateegory" className="h-9 w-full rounded-lg"/><br/><br/>
-                        <input type ="text" placeholder="Manufaturer" className="h-9 w-full rounded-lg"/><br/><br/>
+                        <input type ="text" placeholder="Manufacturer" className="h-9 w-full rounded-lg"/><br/><br/>
                         <input type ="text" placeholder="Batch Number" className="h-9 w-full rounded-lg"/><br/><br />
-                        <label>Manufaturer Date</label><br/>
+                        <label>Manufacturer Date</label><br/>
                         <input type ="date" placeholder="mm/dd/yyyy" className="h-9 w-full rounded-lg"/><br/><br/>
                         <label>Entry Date</label><br/>
                         <input type ="date" placeholder="mm/dd/yyyy" className="h-9 w-full rounded-lg"/><br/><br/>
