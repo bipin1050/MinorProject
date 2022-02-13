@@ -18,9 +18,6 @@ const Mainpage = () => {
                         <MiniDrawer/>
                     </ul>
                 </div>
-                <div>
-                    <label>Search bar</label>
-                </div>
             </navbar>
             <div>
                 <Routes>
