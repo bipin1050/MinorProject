@@ -26,8 +26,8 @@ const Mainpage = () => {
                     <Route path ='/pendingsell' element={<Pendingsell/>}/>
                 </Routes>
             </div>
-            <footer>
-
+            <footer className='fixed w-full px-64 bg-zinc-600 bottom-0 text-white'>
+                    Manager : Admin
             </footer>
         </div>
      );

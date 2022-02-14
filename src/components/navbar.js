@@ -17,8 +17,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardSharp from '@mui/icons-material/DashboardSharp';
 import SearchIcon from '@material-ui/icons/Search';
-import MailIcon from '@mui/icons-material/Mail';
-
+import Dashboard from './dashboard';
 
 const drawerWidth = 240;
 
@@ -134,38 +133,18 @@ export default function MiniDrawer() {
           {['Dashboard', 'Search Items', 'Add Items', 'Remove Item','Pending'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {/* {index % 2 === 0 ? <DashboardSharp /> : <MailIcon />} */}
-                {
-                  {(() => {
-                    switch (index) {
-                      case 0:   return <Dashboard />;
-                      case 1: return <Search />;
-                      case 2:  return "#0000FF";
-                      default:      return "#FFFFFF";
-                    }
-                  })()}
-                }
+                {index % 2 === 0 ? <DashboardSharp /> : <SearchIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
-        {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Typography paragraph>
-          paragraPH1
+            <Dashboard />
         </Typography>
       </Box>
     </Box>

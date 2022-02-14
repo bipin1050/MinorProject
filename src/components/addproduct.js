@@ -3,7 +3,7 @@ const Addproduct = () => {
         <div className="bg-neutral-300">
             <form>
                 <div className="container mx-auto">
-                    <div className="container mx-auto w-1/4 py-6 text-2xl text-center">Enter New Product</div>
+                    <div className="container mx-auto w-1/4 py-6 text-2xl text-center">Add New Product</div>
                     <div className="container mx-auto w-1/4">
                         <input type ="text" placeholder="Product Name" className="h-9 w-full rounded-lg border-black"/><br/><br/>
                         <input type ="text" placeholder="Cateegory" className="h-9 w-full rounded-lg"/><br/><br/>
