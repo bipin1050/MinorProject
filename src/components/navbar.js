@@ -18,6 +18,15 @@ import ListItemText from '@mui/material/ListItemText';
 import DashboardSharp from '@mui/icons-material/DashboardSharp';
 import SearchIcon from '@material-ui/icons/Search';
 import Dashboard from './dashboard';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
+import SellIcon from '@mui/icons-material/Sell';
+import { Navigate, Routes, useLocation, useNavigate } from 'react-router';
+import { Route } from '@mui/icons-material';
+import Addproduct from './addproduct';
+import Pendingpurchase from './pendingpurchase';
+import Pendingsell from './pendingsell';
+import { ListItemButton } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -99,7 +108,8 @@ export default function MiniDrawer() {
   };
 
 
-
+const navigate = useNavigate();
+const {pathname} = useLocation();
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -130,23 +140,76 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Dashboard', 'Search Items', 'Add Items', 'Remove Item','Pending'].map((text, index) => (
+
+          <ListItemButton selected = {pathname.includes("dashboard")} onClick={()=> {
+            navigate("dashboard")
+          }}>
+              <ListItemIcon>
+                <DashboardSharp />
+              </ListItemIcon>
+              <ListItemText primary={"Dashboard"} />
+          </ListItemButton>
+
+          <ListItemButton selected = {pathname.includes("searchproduct")} onClick ={()=>{
+            navigate('searchproduct')
+          }}>
+              <ListItemIcon>
+                <SearchIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Search Items"} />
+          </ListItemButton>
+
+          <ListItemButton selected = {pathname.includes("addproduct")}  onClick={()=> {
+            navigate("addproduct") 
+          }}>
+              <ListItemIcon>
+                <AddCircleOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Add Items"} />
+          </ListItemButton>
+
+          <ListItemButton selected = {pathname.includes("removeproduct")}  onClick={()=> {
+            navigate("removeproduct") 
+          }}>
+              <ListItemIcon>
+                <RemoveCircleOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Remove Items"} />
+          </ListItemButton>
+
+          <ListItemButton selected = {pathname.includes("sellproduct")}  onClick={()=> {
+            navigate("sellproduct") 
+          }}>
+              <ListItemIcon>
+                <SellIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Sell"} />
+          </ListItemButton>
+
+          {/* {['Dashboard', 'Search Items', 'Add Items', 'Remove Item','Sell'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <DashboardSharp /> : <SearchIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
         </List>
         <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Typography paragraph>
-            <Dashboard />
-        </Typography>
-      </Box>
+        {/* <DrawerHeader /> */}
+        {/* <Typography paragraph>
+         <Routes>
+            <Route path ='addproduct' element={<Addproduct/>}/>
+            <Route path ='addproduct' element={<Addproduct/>}/>
+            <Route path ='pendingpurchase' element={<Pendingpurchase/>}/>
+            <Route path ='pendingsell' element={<Pendingsell/>}/>
+          </Routes> 
+        </Typography> */}
+      </Box> 
     </Box>
   );
 }
+
+// className ={`${pathname.includes("addproduct")?"text-green-500":""}`}

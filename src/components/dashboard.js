@@ -3,7 +3,7 @@ const Dashboard = () => {
         <div>
             <div className="scaledwidth">
                 <div className="topBar ">
-                    <div className="leftSide w-4/5 inline-block">
+                    <div className="leftSide w-4/5 inline-block border-r-4 border-slate-400">
                         <div className="text-center text-4xl py-5 text-slate-400">
                             Sales Activity
                         </div>
@@ -23,10 +23,10 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="rightSide w-1/5 inline-block text-center border-l-4 border-slate-400">
+                    <div className="rightSide w-1/5 inline-block text-center">
                         <div>
                             Quantity Summary
-                        </div>s
+                        </div>
                         <div className="my-5">
                             <div className="py-2">Quantity in hand : </div>
                             <div className="py-2">Quantity to be received : </div>
