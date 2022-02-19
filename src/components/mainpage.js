@@ -12,10 +12,6 @@ const Mainpage = () => {
       <navbar>
         <div>
           <ul>
-            {/* <Link to="/mainpage/">Home</Link>
-                        <Link to="/mainpage/addproduct">Add Product</Link>
-                        <Link to="/mainpage/pendingpurchase">Pending Purchase</Link>
-                        <Link to="/mainpage/pendingsell">Pending Sell</Link> */}
             <MiniDrawer />
           </ul>
         </div>
@@ -27,8 +23,6 @@ const Mainpage = () => {
           <Route path="removeproduct" element={<Removeproduct />} />
           <Route path="searchproduct" element={<Searchproduct />} />
           <Route path="sellproduct" element={<Sellproduct />} />
-
-
         </Routes>
       </div>
       <footer className="fixed w-full px-64 bg-zinc-600 bottom-0 text-white">
