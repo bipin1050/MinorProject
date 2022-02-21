@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import Addproduct from "./addproduct";
 import Dashboard from "./dashboard";
@@ -7,23 +8,22 @@ import Searchproduct from "./searchproduct";
 import Sellproduct from "./sellproduct";
 
 const Mainpage = () => {
+
   return (
-    <div>
+    <div >
       <navbar>
-        <div>
-          <ul>
-            <MiniDrawer />
-          </ul>
-        </div>
+        <MiniDrawer />
       </navbar>
       <div>
-        <Routes>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="addproduct" element={<Addproduct />} />
-          <Route path="removeproduct" element={<Removeproduct />} />
-          <Route path="searchproduct" element={<Searchproduct />} />
-          <Route path="sellproduct" element={<Sellproduct />} />
-        </Routes>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Routes>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="addproduct" element={<Addproduct />} />
+            <Route path="removeproduct" element={<Removeproduct />} />
+            <Route path="searchproduct" element={<Searchproduct />} />
+            <Route path="sellproduct" element={<Sellproduct />} />
+          </Routes>
+        </Box>
       </div>
       <footer className="fixed w-full px-64 bg-zinc-600 bottom-0 text-white">
         Manager : Admin

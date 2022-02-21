@@ -12,11 +12,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardSharp from '@mui/icons-material/DashboardSharp';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import Dashboard from './dashboard';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
@@ -24,8 +23,6 @@ import SellIcon from '@mui/icons-material/Sell';
 import { Navigate, Routes, useLocation, useNavigate } from 'react-router';
 import { Route } from '@mui/icons-material';
 import Addproduct from './addproduct';
-import Pendingpurchase from './pendingpurchase';
-import Pendingsell from './pendingsell';
 import { ListItemButton } from '@mui/material';
 
 const drawerWidth = 240;
@@ -197,17 +194,20 @@ const {pathname} = useLocation();
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+       {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}> */}
         {/* <DrawerHeader /> */}
-        {/* <Typography paragraph>
-         <Routes>
-            <Route path ='addproduct' element={<Addproduct/>}/>
+        {/* <Typography paragraph> */}
+        {/* <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path ='addproduct' element={<Addproduct />}/>
+        </Routes> */}
+          {/* <Routes>
             <Route path ='addproduct' element={<Addproduct/>}/>
             <Route path ='pendingpurchase' element={<Pendingpurchase/>}/>
             <Route path ='pendingsell' element={<Pendingsell/>}/>
           </Routes> 
         </Typography> */}
-      </Box> 
+        {/* </Box> */}
     </Box>
   );
 }
