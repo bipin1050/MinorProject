@@ -19,7 +19,7 @@ const Login = () => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         //this is to sent to backend
-        axios.post("facebook.com",data).then(()=>{
+        axios.post("localhost:5000/login",data).then(()=>{
             
         }).catch(()=>{
             
