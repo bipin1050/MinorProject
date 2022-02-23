@@ -8,7 +8,6 @@ const Searchproduct = () => {
   const handleInputValue = (event) => {
     setSearchValue(event.target.value)
   }
-
   const handleClearButton = () => {
     setSearchValue("");
   }
@@ -16,21 +15,20 @@ const Searchproduct = () => {
   const showClearButton = searchValue.length > 0;
   const isSearched = searchValue.length > 0;
 
-
-  const products =[
-    {'oil','3000','30'},
-    {'soap','1200','50'},
-    {'samphoo','100','200'},
-    {'toothpaste','50','1300'}
-  ]
-  // const products = ["oil", "toothpaste", "soap", "samphoo"]
+  const [products, setProducts] = useState([
+    {name: 'oil',       price: 3000,    quantity: 30},
+    {name: 'soap',      price: 1200,    quantity: 50},
+    {name: 'samphoo',   price: 100,     quantity: 200},
+    {name: 'toothpaste',price: 50,      quantity: 1300}
+  ]);
+  // const products = ["oil", "toothpaste", "soap", "samphoo"];
 
   const searchedProduct = products.filter((product) =>{
-    return product.includes(searchValue);
+    if (product.name.includes(searchValue))
+      return product;
   })
 
-  console.log(isSearched);
-console.log()
+  // console.log(isSearched);
   return (
     <div className="px-64 py-8">
       <div
@@ -54,15 +52,29 @@ console.log()
           {showClearButton && <button onClick={handleClearButton}><CloseOutlinedIcon className="text-zinc-500" /></button>}
         </div>
       </div>
-      {isSearched &&
-          searchedProduct.map((product) => {
-              return <div key = {product}> {product} </div>
-          })
-          // <div>
-          //   searchedProduct.map((product) => {
-          //     return <div key = {product}> {product} </div>
-          //   })
-          // </div>
+      {isSearched && searchedProduct.map((product) => {
+        return (
+          <div>
+            <label className="flex">
+              <div>Name : &nbsp;</div>
+              <div key = {product.name}> {product.name} </div>
+            </label>
+            <label className="flex">
+              <div>Unit Price : &nbsp;</div>
+              <div key = {product.price}> {product.price} </div>
+            </label>
+            <label className="flex">
+              <div>Available quantity : &nbsp;</div>
+              <div key = {product.quantity}> {product.quantity} </div>
+            </label>
+            <br />
+        </div>)
+        })
+        // <div>
+        //   searchedProduct.map((product) => {
+        //     return <div key = {product}> {product} </div>
+        //   })
+        // </div>
       }
     </div>
   );
