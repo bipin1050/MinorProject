@@ -1,9 +1,52 @@
+import { useState } from "react";
+
 const Addproduct = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
     }
 
-    return ( 
+
+    // const [isNewSelected, setIsNewSelected] = useState(true);
+    // const [isExistingSelected, setIsExistingSelected] = useState(false);
+
+    // const handleNewSelect = (e) => {
+    //     console.log("New item selected");
+    //     console.log(e);
+
+    // //     setIsNewSelected(true);
+    // //     setIsExistingSelected(false);
+    // //     console.log(setIsNewSelected);
+    // // ````console.log(setIsExistingSelected);
+    // }
+
+    // const handleExistingSelect = () => {
+    //     setIsNewSelected(false);
+    //     setIsExistingSelected(true);
+    // }
+    // console.log(setIsNewSelected);
+    // console.log(setIsExistingSelected);
+
+
+    const handleSelect = (event) => {
+        
+    }
+
+    return (
+        <div>
+            <form>
+                <div className="container mx-auto">
+                    <div className="container mx-auto w-1/4 py-6 text-2xl text-center">Add Product</div>
+                    <div className="container mx-auto w-1/4 text-xl text-center">
+                        <select className="border-4 border-slate-400 rounded-lg" onChange={handleSelect}>
+                            <option value="Add New">Add New</option>
+                            <option value="Add Existing">Add Existing</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    )
+    {/*return ( 
         <div className="bg-neutral-300">
             <form>
                 <div className="container mx-auto">
@@ -32,7 +75,7 @@ const Addproduct = () => {
                 </div>
             </form>
         </div>
-     );
+     ); */}
 }
  
 export default Addproduct;

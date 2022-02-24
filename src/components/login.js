@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {useForm} from 'react-hook-form';
+import { Navigate, useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     // const(formDetail, setFormDetail) = useState(
@@ -14,15 +16,20 @@ const Login = () => {
     //     const value = e.target.value;
     //     setFormDetail(...FormDetail, [name]: value )
     // }
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         //this is to sent to backend
-        axios.post("localhost:5000/login",data).then(()=>{
-            
-        }).catch(()=>{
-            
+        axios.post("http://localhost:5000/login",{
+            username: data.get("username"),
+            password: data.get("password")
+        }).then((res)=>{
+            navigate("mainpage")
+        }).catch((err)=>{
+            toast.error(err.response.data.message)
+            console.log(err.response)
         })
         console.log(data.get("username"));
         console.log(data.get("password"));

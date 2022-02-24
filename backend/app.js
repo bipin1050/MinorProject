@@ -1,11 +1,11 @@
 const express = require("express");
-
+const cors = require('cors');
 const authenticate=require("./middleware/authenticate")
 
 const app=express();
 
 app.use(express.json())
-
+app.use(cors())
 const connection=require("./db/db");
 
 const login=require("./routes/login")

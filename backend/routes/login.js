@@ -16,10 +16,10 @@ router.post('/',(req,res)=>{
             console.log('login sucess')
             const user={name:username}
             const accessToken=jwt.sign(user,process.env.ACCESS_TOKEN_SECRET);
-            res.status(400).json({accessToken:accessToken})
+            res.status(200).json({accessToken:accessToken})
         }
         else{
-            res.send({message:"Wrong username/password"})
+            res.status(400).send({message:"Wrong username/password"})
         }
     })
 })

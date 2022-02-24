@@ -24,7 +24,7 @@ const Searchproduct = () => {
   // const products = ["oil", "toothpaste", "soap", "samphoo"];
 
   const searchedProduct = products.filter((product) =>{
-    if (product.name.includes(searchValue))
+    if (product.name.toUpperCase().includes(searchValue.toUpperCase()))
       return product;
   })
 
@@ -46,6 +46,7 @@ const Searchproduct = () => {
             placeholder="Search"
             value = {searchValue}
             onChange={handleInputValue}
+            autoComplete ="off"
           />
         </div>
         <div>
