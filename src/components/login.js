@@ -87,37 +87,3 @@ const Login = () => {
 }
  
 export default Login;
-
-// import {useForm} from 'react-hook-form';
-
-// const Login = () => {
-//     const {register, handleSubmit} = useForm();
-
-//     const onSubmit = (data) => {
-//         console.log(data);
-//     }
-
-//     return (
-//         <div className='flex justify-center text-2xl'>
-//             <div>
-//                 <form onSubmit={handleSubmit(onSubmit)}>
-//                     <div>
-//                         <label>Username</label>
-//                         <br/>
-//                         <input type = "text" name ="username"  className='rounded-lg bg-zinc-500 focus:outline-none focus:ring-4'/>
-//                         <br /><br/>
-//                         <label>Password</label>
-//                         <br/>
-//                         <input type="password" name="password"  className='rounded-lg bg-zinc-500 focus:outline-none focus:ring-4'/>
-//                     </div>
-//                     <br/><br/>
-//                     <div className='flex justify-center'>
-//                         <button type="submit" className='bg-green-600 px-16 py-2 rounded-full hover:bg-white hover:text-green-600'>Login</button>
-//                     </div>
-//                 </form>
-//             </div>
-//         </div>
-//      );
-// }
- 
-// export default Login;

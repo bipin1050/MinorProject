@@ -2,7 +2,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { useState } from "react";
 
-const Searchproduct = () => {
+const Searchproduct = (props) => {
+
+  const products = props.products
+
   const [searchValue, setSearchValue] = useState("");
 
   const handleInputValue = (event) => {
@@ -15,12 +18,6 @@ const Searchproduct = () => {
   const showClearButton = searchValue.length > 0;
   const isSearched = searchValue.length > 0;
 
-  const [products, setProducts] = useState([
-    {name: 'oil',       price: 3000,    quantity: 30},
-    {name: 'soap',      price: 1200,    quantity: 50},
-    {name: 'samphoo',   price: 100,     quantity: 200},
-    {name: 'toothpaste',price: 50,      quantity: 1300}
-  ]);
   // const products = ["oil", "toothpaste", "soap", "samphoo"];
 
   const searchedProduct = products.filter((product) =>{
@@ -71,7 +68,7 @@ const Searchproduct = () => {
             <br />
         </div>)
         })
-        // <div>
+        // e<div>
         //   searchedProduct.map((product) => {
         //     return <div key = {product}> {product} </div>
         //   })
