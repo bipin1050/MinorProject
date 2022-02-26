@@ -1,82 +1,91 @@
 import SearchIcon from "@mui/icons-material/Search";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const Searchproduct = () => {
   const [searchValue, setSearchValue] = useState("");
 
   const handleInputValue = (event) => {
-    setSearchValue(event.target.value)
+    setSearchValue(event.target.value.trim())
   }
   const handleClearButton = () => {
     setSearchValue("");
   }
-  
+
   const showClearButton = searchValue.length > 0;
-  const isSearched = searchValue.length > 0;
 
   const [products, setProducts] = useState([
-    {name: 'oil',       price: 3000,    quantity: 30},
-    {name: 'soap',      price: 1200,    quantity: 50},
-    {name: 'samphoo',   price: 100,     quantity: 200},
-    {name: 'toothpaste',price: 50,      quantity: 1300}
+    { name: 'oil', price: 3000, quantity: 30, batchNumber: 343443, brand: 'tata', category: 'groceries' },
+    { name: 'soap', price: 1200, quantity: 50, batchNumber: 2345, brand: 'colgate', category: 'Pencil' },
+    { name: 'samphoo', price: 100, quantity: 200, batchNumber: 2345, brand: 'clinic', category: 'Copy' },
+    { name: 'toothpaste', price: 50, quantity: 1300, batchNumber: 2345, brand: 'Dabur', category: 'Book' }
   ]);
-  // const products = ["oil", "toothpaste", "soap", "samphoo"];
 
-  const searchedProduct = products.filter((product) =>{
-    if (product.name.toUpperCase().includes(searchValue.toUpperCase()))
+  const computedProducts = products.filter((product) => {
+    if (!searchValue.length) return product;
+
+    let search = searchValue.toUpperCase();
+
+    if (
+      product.name.toUpperCase().includes(search) || 
+      product.brand.toUpperCase().includes(search) || 
+      product.category.toUpperCase().includes(search)
+    )
       return product;
   })
 
-  // console.log(isSearched);
   return (
-    <div className="px-64 py-8">
+    <div className="py-8">
       <div
-        className="flex bg-zinc-100 border-2 border-zinc-200 px-3 rounded-2xl text-xl items-center"
-        style={{ width: "600px" }}
+        className="p-1 flex ml-auto w-1/3 border-2 rounded-md items-center mb-3 focus-within:border-blue-500"
       >
         <div>
-          <SearchIcon className="text-zinc-500" />
+          <SearchIcon className="fill-current text-gray-500" />
         </div>
         <div className="ml-2 mr-2 w-full ">
           <input
-            className="outline-none w-full h-14 focus:outline-none bg-zinc-100 rounded-sm"
+            className="outline-none w-full focus:outline-none  rounded-sm"
             type="text"
             name="searchitem"
-            placeholder="Search"
-            value = {searchValue}
+            placeholder="Search..."
+            value={searchValue}
             onChange={handleInputValue}
-            autoComplete ="off"
+            autoComplete="off"
           />
         </div>
         <div>
           {showClearButton && <button onClick={handleClearButton}><CloseOutlinedIcon className="text-zinc-500" /></button>}
         </div>
       </div>
-      {isSearched && searchedProduct.map((product) => {
-        return (
-          <div>
-            <label className="flex">
-              <div>Name : &nbsp;</div>
-              <div key = {product.name}> {product.name} </div>
-            </label>
-            <label className="flex">
-              <div>Unit Price : &nbsp;</div>
-              <div key = {product.price}> {product.price} </div>
-            </label>
-            <label className="flex">
-              <div>Available quantity : &nbsp;</div>
-              <div key = {product.quantity}> {product.quantity} </div>
-            </label>
-            <br />
-        </div>)
-        })
-        // <div>
-        //   searchedProduct.map((product) => {
-        //     return <div key = {product}> {product} </div>
-        //   })
-        // </div>
-      }
+      <table className="w-full divide-y divide-gray-200 border border-gray-200">
+        <thead>
+          <tr className="bg-blue-500 text-white">
+            <th className="p-2 text-left">Name</th>
+            <th className="p-2 text-left">Price</th>
+            <th className="p-2 text-left">Quantity</th>
+            <th className="p-2 text-left">Batch Number</th>
+            <th className="p-2 text-left">Brand</th>
+            <th className="p-2 text-left">Category</th>
+            <th className="p-2 text-left">Action</th>
+          </tr>
+        </thead>
+
+        <tbody className="divide-y divide-gray-200">
+          {computedProducts.map((product, idx) => {
+            return (<tr key={idx}>
+              <td className="p-2">{product.name}</td>
+              <td className="p-2">{product.price}</td>
+              <td className="p-2">{product.quantity}</td>
+              <td className="p-2">{product.batchNumber}</td>
+              <td className="p-2">{product.brand}</td>
+              <td className="p-2">{product.category}</td>
+              <td>
+              </td>
+            </tr>)
+          })}
+        </tbody>
+
+      </table>
     </div>
   );
 };
