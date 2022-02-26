@@ -4,8 +4,6 @@ import React, { useState } from "react";
 
 const Searchproduct = (props) => {
 
-  const products = props.products
-
   const [searchValue, setSearchValue] = useState("");
 
   const handleInputValue = (event) => {
