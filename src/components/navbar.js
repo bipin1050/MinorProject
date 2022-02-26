@@ -169,7 +169,7 @@ export default function DashboardNav({ children }) {
             <ListItemIcon>
               <SearchIcon />
             </ListItemIcon>
-            <ListItemText primary={"Search Items"} />
+            <ListItemText primary={"List Items"} />
           </ListItemButton>
 
           <ListItemButton

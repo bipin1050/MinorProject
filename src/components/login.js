@@ -29,10 +29,10 @@ const Login = () => {
             navigate("mainpage")
         }).catch((err)=>{
             toast.error(err.response.data.message)
-            console.log(err.response)
+            // console.log(err.response)
         })
-        console.log(data.get("username"));
-        console.log(data.get("password"));
+        // console.log(data.get("username"));
+        // console.log(data.get("password"));
     }
     // var body = {
     //     userName: 'Fred',

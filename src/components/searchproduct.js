@@ -18,14 +18,12 @@ const Searchproduct = (props) => {
   const showClearButton = searchValue.length > 0;
   const isSearched = searchValue.length > 0;
 
-  // const products = ["oil", "toothpaste", "soap", "samphoo"];
 
   const searchedProduct = products.filter((product) =>{
     if (product.name.toUpperCase().includes(searchValue.toUpperCase()))
       return product;
   })
 
-  // console.log(isSearched);
   return (
     <div className="px-64 py-8">
       <div
