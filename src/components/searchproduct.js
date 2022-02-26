@@ -2,7 +2,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import React, { useState } from "react";
 
-const Searchproduct = () => {
+const Searchproduct = (props) => {
+
+  const products = props.products
+
   const [searchValue, setSearchValue] = useState("");
 
   const handleInputValue = (event) => {
