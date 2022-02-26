@@ -28,7 +28,7 @@ const Login = () => {
         }).then((res)=>{
             navigate("mainpage")
         }).catch((err)=>{
-            toast.error(err.response.data.message)
+            toast.error(err.response?.data?.message || err.message)
             console.log(err.response)
         })
         console.log(data.get("username"));
