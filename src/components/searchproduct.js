@@ -1,10 +1,27 @@
 import SearchIcon from "@mui/icons-material/Search";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-const Searchproduct = (props) => {
+function getProducts() {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res([
+        { name: 'oil', price: 3000, quantity: 30, batchNumber: 343443, brand: 'tata', category: 'groceries' },
+        { name: 'soap', price: 1200, quantity: 50, batchNumber: 2345, brand: 'colgate', category: 'Pencil' },
+        { name: 'samphoo', price: 100, quantity: 200, batchNumber: 2345, brand: 'clinic', category: 'Copy' },
+        { name: 'toothpaste', price: 50, quantity: 1300, batchNumber: 2345, brand: 'Dabur', category: 'Book' }
+      ]);
+    }, 0);
+  })
+}
+
+
+const Searchproduct = () => {
 
   const [searchValue, setSearchValue] = useState("");
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleInputValue = (event) => {
     setSearchValue(event.target.value.trim())
@@ -15,12 +32,20 @@ const Searchproduct = (props) => {
 
   const showClearButton = searchValue.length > 0;
 
-  const [products, setProducts] = useState([
-    { name: 'oil', price: 3000, quantity: 30, batchNumber: 343443, brand: 'tata', category: 'groceries' },
-    { name: 'soap', price: 1200, quantity: 50, batchNumber: 2345, brand: 'colgate', category: 'Pencil' },
-    { name: 'samphoo', price: 100, quantity: 200, batchNumber: 2345, brand: 'clinic', category: 'Copy' },
-    { name: 'toothpaste', price: 50, quantity: 1300, batchNumber: 2345, brand: 'Dabur', category: 'Book' }
-  ]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts()
+      .then(res => {
+        setProducts(res)
+      })
+      .catch(err => {
+        toast.error(err)
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }, [])
 
   const computedProducts = products.filter((product) => {
     if (!searchValue.length) return product;
@@ -28,8 +53,8 @@ const Searchproduct = (props) => {
     let search = searchValue.toUpperCase();
 
     if (
-      product.name.toUpperCase().includes(search) || 
-      product.brand.toUpperCase().includes(search) || 
+      product.name.toUpperCase().includes(search) ||
+      product.brand.toUpperCase().includes(search) ||
       product.category.toUpperCase().includes(search)
     )
       return product;
@@ -72,7 +97,12 @@ const Searchproduct = (props) => {
         </thead>
 
         <tbody className="divide-y divide-gray-200">
-          {computedProducts.map((product, idx) => {
+          {isLoading &&
+            <tr><td className="p-2" colSpan={7}><p className="text-sm text-center text-gray-500">Loading...</p></td></tr>
+          }
+
+
+          {(!isLoading && computedProducts) && computedProducts.map((product, idx) => {
             return (<tr key={idx}>
               <td className="p-2">{product.name}</td>
               <td className="p-2">{product.price}</td>
@@ -84,6 +114,10 @@ const Searchproduct = (props) => {
               </td>
             </tr>)
           })}
+
+          {(!computedProducts.length && !isLoading) &&
+            <tr><td className="p-2" colSpan={7}><p className="text-sm text-center text-gray-500">No records found</p></td></tr>
+          }
         </tbody>
 
       </table>
