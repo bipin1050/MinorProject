@@ -28,8 +28,8 @@ const Login = () => {
         }).then((res)=>{
             navigate("mainpage")
         }).catch((err)=>{
-            toast.error(err.response.data.message)
-            // console.log(err.response)
+            toast.error(err.response?.data?.message || err.message)
+            console.log(err.response)
         })
         // console.log(data.get("username"));
         // console.log(data.get("password"));
