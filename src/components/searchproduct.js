@@ -1,12 +1,29 @@
 import SearchIcon from "@mui/icons-material/Search";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-const Searchproduct = (props) => {
+function getProducts() {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res([
+        { name: 'oil', price: 3000, quantity: 30, batchNumber: 343443, brand: 'tata', category: 'groceries' },
+        { name: 'soap', price: 1200, quantity: 50, batchNumber: 2345, brand: 'colgate', category: 'Pencil' },
+        { name: 'samphoo', price: 100, quantity: 200, batchNumber: 2345, brand: 'clinic', category: 'Copy' },
+        { name: 'toothpaste', price: 50, quantity: 1300, batchNumber: 2345, brand: 'Dabur', category: 'Book' }
+      ]);
+    }, 0);
+  })
+}
+
+
+const Searchproduct = () => {
 
   const products = props.products;
 
   const [searchValue, setSearchValue] = useState("");
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleInputValue = (event) => {
     setSearchValue(event.target.value.trim())
@@ -67,7 +84,12 @@ const Searchproduct = (props) => {
         </thead>
 
         <tbody className="divide-y divide-gray-200">
-          {computedProducts.map((product, idx) => {
+          {isLoading &&
+            <tr><td className="p-2" colSpan={7}><p className="text-sm text-center text-gray-500">Loading...</p></td></tr>
+          }
+
+
+          {(!isLoading && computedProducts) && computedProducts.map((product, idx) => {
             return (<tr key={idx}>
               <td className="p-2">{product.productName}</td>
               <td className="p-2">{product.price}</td>
@@ -79,6 +101,10 @@ const Searchproduct = (props) => {
               </td>
             </tr>)
           })}
+
+          {(!computedProducts.length && !isLoading) &&
+            <tr><td className="p-2" colSpan={7}><p className="text-sm text-center text-gray-500">No records found</p></td></tr>
+          }
         </tbody>
 
       </table>
