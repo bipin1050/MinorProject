@@ -14,7 +14,6 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/existing',(req,res)=>{
-    return res.status(200).send({message:"hello"})
     const {productName,batchNumber,entryDate,quantity,}=req.body;
     let productId;
     connection.execute('select `productId` from product where `productName`=?',[productName],(error,result)=>{
@@ -39,7 +38,8 @@ router.post('/new',(req,res)=>{
     })
     connection.execute('select `productId` from product where `productName`=?',[productName],(error,result)=>{
         if(error) return res.json({error:error});
-        [{productId}]=result
+        result=result[result.length-1]
+        productId=result.productId
         connection.execute('insert into productdate values (?,?,?,?,?)',[productId,batchNumber,manufactureDate,entryDate,expiryDate],(error,result)=>{
             if(error) return res.json({error:error});
             console.log("sucess")

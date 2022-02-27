@@ -11,14 +11,21 @@ import Sellproduct from "./sellproduct";
 
 const Mainpage = () => {
 
-  const [products, setProducts] = useState();
-  
+  // const [products, setProducts] = useState([
+  //       { name: 'oil', price: 3000, quantity: 30, batchNumber: 343443, brand: 'tata', category: 'groceries' },
+  //       { name: 'soap', price: 1200, quantity: 50, batchNumber: 2345, brand: 'colgate', category: 'Pencil' },
+  //       { name: 'samphoo', price: 100, quantity: 200, batchNumber: 2345, brand: 'clinic', category: 'Copy' },
+  //       { name: 'toothpaste', price: 50, quantity: 1300, batchNumber: 2345, brand: 'Dabur', category: 'Book' }
+  //     ]);
+
+  const [products, setProducts] = useState([]);
   useEffect(()=>{
     axios.get("http://localhost:5000/checkout")
     .then((res)=>{
+      console.log(res.data)
       setProducts(res.data)
     })
-  }, [])
+  }, [products.length])
 
   return (
     <DashboardNav>
@@ -32,5 +39,5 @@ const Mainpage = () => {
     </DashboardNav>
   );
 };
-
+``
 export default Mainpage;

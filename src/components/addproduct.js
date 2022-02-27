@@ -4,9 +4,6 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
 const Addproduct = (props) => {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
 
     const products = props.products;
 
@@ -20,14 +17,13 @@ const Addproduct = (props) => {
     const [manufactureDate, setManufactureDate] = useState("");
     const [entryDate, setEntryDate] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
-    const [unitPrice, setUnitPrice] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [target, setTarget] = useState("");
+    const [unitPrice, setUnitPrice] = useState();
+    const [quantity, setQuantity] = useState();
+    const [target, setTarget] = useState();
     const [location, setLocation] = useState("");
 
-    const navigate = useNavigate();
-
     const handleProductName = (e) => {
+         console.log(e.target.value)
         setProductName(e.target.value);
     }
     const handleCategory = (e) => {
@@ -37,7 +33,7 @@ const Addproduct = (props) => {
         setManufacturer(e.target.value);
     }
     const handleBatchNo = (e) => {
-        setBatchNo(e.target.value);
+        setBatchNo(parseInt(e.target.value));
     }
     const handleManufatureDate = (e) => {
         setManufactureDate(e.target.value);
@@ -49,13 +45,14 @@ const Addproduct = (props) => {
         setExpiryDate(e.target.value);
     }
     const handleUnitPrice = (e) => {
-        setUnitPrice(e.target.value);
+        console.log(e.target.value)
+        setUnitPrice(parseInt(e.target.value));
     }
     const handleQuantity = (e) => {
-        setQuantity(e.target.value);
+        setQuantity(parseInt(e.target.value));
     }
     const handleTarget = (e) => {
-        setTarget(e.target.value);
+        setTarget(parseInt(e.target.value));
     }
     const handleLocation = (e) => {
         setLocation(e.target.value);
@@ -79,10 +76,10 @@ const Addproduct = (props) => {
             setManufactureDate("");
             setEntryDate("");
             setExpiryDate("");
-            setQuantity("");
+            setQuantity();
             setLocation("");
-            setUnitPrice("");
-            setTarget("");
+            setUnitPrice();
+            setTarget();
     }
 
     const handleSelect = (event) => {
@@ -162,16 +159,16 @@ const Addproduct = (props) => {
                                 <input type ="text" placeholder="Product Name" value={productName} onChange={handleProductName} className="h-9 w-full rounded-lg bg-zinc-100 border-black"/><br/><br/>
                                 <input type ="text" placeholder="Category" value={category} onChange={handleCategory} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
                                 <input type ="text" placeholder="Manufacturer" value={manufacturer} onChange={handleManufacturer} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
-                                <input type ="text" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br />
+                                <input type ="number" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br />
                                 <label>Manufacturer Date</label><br/>
                                 <input type ="date" onChange={handleManufatureDate} value={manufactureDate} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
                                 <label>Entry Date</label><br/>
                                 <input type ="date" onChange={handleEntryDate} value={entryDate} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
                                 <label>Expiry Date</label><br/>
                                 <input type ="date" onChange={handleExpiryDate} value={expiryDate} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
-                                <input type ="text" placeholder="Unit Price" value={unitPrice} onChange={handleUnitPrice} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
-                                <input type ="text" placeholder="Quantity" value={quantity} onChange={handleQuantity}  className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
-                                <input type ="text" placeholder="Target" value={target} onChange={handleTarget} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
+                                <input type ="number" placeholder="Unit Price" value={unitPrice} onChange={handleUnitPrice} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
+                                <input type ="number" placeholder="Quantity" value={quantity} onChange={handleQuantity}  className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
+                                <input type ="number" placeholder="Target" value={target} onChange={handleTarget} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
                                 <input type ="text" placeholder="Location" value={location} onChange={handleLocation} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
                                 
                                 <div className="text-center">
@@ -191,15 +188,15 @@ const Addproduct = (props) => {
                                         <option value={product.name}> {product.name} </option>)
                                     })}
                                 </select>
-                                <input type ="text" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br />
+                                <input type ="number" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br />
                                 <label>Manufacturer Date</label><br/>
                                 <input type ="date" onChange={handleManufatureDate} value={manufactureDate} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
                                 <label>Entry Date</label><br/>
                                 <input type ="date" onChange={handleEntryDate} value={entryDate} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
                                 <label>Expiry Date</label><br/>
                                 <input type ="date" onChange={handleExpiryDate} value={expiryDate} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
-                                <input type ="text" placeholder="Unit Price" value={unitPrice} onChange={handleUnitPrice} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
-                                <input type ="text" placeholder="Quantity" value={quantity} onChange={handleQuantity} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
+                                <input type ="number" placeholder="Unit Price" value={unitPrice} onChange={handleUnitPrice} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
+                                <input type ="number" placeholder="Quantity" value={quantity} onChange={handleQuantity} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br/>
 
                                 <div className="text-center">
                                     <button onClick = {handleSubmitAddExistingProduct} className="border-4 px-10 py-2 mb-10 rounded-2xl bg-green-700 hover:bg-stone-50 hover:text-black">

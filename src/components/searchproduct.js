@@ -1,7 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 function getProducts() {
   return new Promise((res, rej) => {
@@ -17,13 +16,13 @@ function getProducts() {
 }
 
 
-const Searchproduct = () => {
+const Searchproduct = (props) => {
 
   const products = props.products;
 
   const [searchValue, setSearchValue] = useState("");
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputValue = (event) => {
     setSearchValue(event.target.value.trim())
@@ -33,7 +32,7 @@ const Searchproduct = () => {
   }
 
   const showClearButton = searchValue.length > 0;
-
+  
   const computedProducts = products.filter((product) => {
     if (!searchValue.length) return product;
 
