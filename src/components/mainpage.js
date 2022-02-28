@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Addproduct from "./addproduct";
 import Dashboard from "./dashboard";
+import Invoice from "./invoice";
 import DashboardNav from "./navbar";
 import Removeproduct from "./removeproduct";
 import Searchproduct from "./searchproduct";
 import Sellproduct from "./sellproduct";
+import InvoiceWrapper from './InvoiceWrapper'
 
 const Mainpage = () => {
 
@@ -19,10 +21,10 @@ const Mainpage = () => {
   //     ]);
 
   const [products, setProducts] = useState([]);
+  
   useEffect(()=>{
     axios.get("http://localhost:5000/checkout")
     .then((res)=>{
-      console.log(res.data)
       setProducts(res.data)
     })
   }, [products.length])
@@ -30,14 +32,15 @@ const Mainpage = () => {
   return (
     <DashboardNav>
       <Routes>
+        <Route index element={<Dashboard />}/>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="addproduct" element={<Addproduct products={products} />} />
         <Route path="removeproduct" element={<Removeproduct products={products}/>} />
-        <Route path="searchproduct" element={<Searchproduct products={products}/>} />
-        <Route path="sellproduct" element={<Sellproduct products={products}/>} />
+        <Route path="searchproduct" element={<Searchproduct />} />
+        <Route path="sellproduct/*" element={<InvoiceWrapper products={products} />} />
       </Routes>
     </DashboardNav>
   );
 };
-``
+
 export default Mainpage;

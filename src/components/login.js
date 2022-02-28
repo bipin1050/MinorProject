@@ -27,6 +27,7 @@ const Login = () => {
             password: data.get("password")
         }).then((res)=>{
             navigate("mainpage")
+            // toast.error(err.response?.data?.message || err.message)
         }).catch((err)=>{
             toast.error(err.response?.data?.message || err.message)
             console.log(err.response)
@@ -34,21 +35,7 @@ const Login = () => {
         // console.log(data.get("username"));
         // console.log(data.get("password"));
     }
-    // var body = {
-    //     userName: 'Fred',
-    //     password: 'Flintstone@gmail.com'
-    // }
-    // axios({
-    //     method: 'post',
-    //     url: '/addUser',
-    //     data: body
-    // })
-    // .then(function (response) {
-    //     console.log(response);
-    // })
-    // .catch(function (error) {
-    //     console.log(error);
-    // });
+    
 
     return ( 
         <div className=''>
@@ -66,9 +53,10 @@ const Login = () => {
                     <div>
                         <form onSubmit={handleSubmit}>
                             <div>
+                                <br />
                                 <label>Username</label>
                                 <br/>
-                                <input type = "text" name ="username" /*value ={formDetail.name} onChange={handleChange}*/ required className='rounded-lg bg-zinc-500 focus:outline-none focus:ring-4'/>
+                                <input autoComplete="off" type = "text" name ="username" /*value ={formDetail.name} onChange={handleChange}*/ required className='rounded-lg bg-zinc-500 focus:outline-none focus:ring-4'/>
                                 <br /><br/>
                                 <label>Password</label>
                                 <br/>

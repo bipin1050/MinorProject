@@ -1,24 +1,21 @@
 import SearchIcon from "@mui/icons-material/Search";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import React, { useEffect, useState } from "react";
-
-function getProducts() {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      res([
-        { name: 'oil', price: 3000, quantity: 30, batchNumber: 343443, brand: 'tata', category: 'groceries' },
-        { name: 'soap', price: 1200, quantity: 50, batchNumber: 2345, brand: 'colgate', category: 'Pencil' },
-        { name: 'samphoo', price: 100, quantity: 200, batchNumber: 2345, brand: 'clinic', category: 'Copy' },
-        { name: 'toothpaste', price: 50, quantity: 1300, batchNumber: 2345, brand: 'Dabur', category: 'Book' }
-      ]);
-    }, 0);
-  })
-}
+import axios from "axios";
 
 
 const Searchproduct = (props) => {
 
-  const products = props.products;
+  // const [products, setProducts] = useState(props.products);
+  // const products = props.products;
+    const [products, setProducts] = useState([]);
+  
+  useEffect(()=>{
+    axios.get("http://localhost:5000/checkout")
+    .then((res)=>{
+      setProducts(res.data)
+    })
+  }, [products.length])
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -32,7 +29,7 @@ const Searchproduct = (props) => {
   }
 
   const showClearButton = searchValue.length > 0;
-  
+
   const computedProducts = products.filter((product) => {
     if (!searchValue.length) return product;
 

@@ -17,13 +17,12 @@ const Addproduct = (props) => {
     const [manufactureDate, setManufactureDate] = useState("");
     const [entryDate, setEntryDate] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
-    const [unitPrice, setUnitPrice] = useState();
-    const [quantity, setQuantity] = useState();
-    const [target, setTarget] = useState();
+    const [unitPrice, setUnitPrice] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [target, setTarget] = useState("");
     const [location, setLocation] = useState("");
 
     const handleProductName = (e) => {
-         console.log(e.target.value)
         setProductName(e.target.value);
     }
     const handleCategory = (e) => {
@@ -45,14 +44,14 @@ const Addproduct = (props) => {
         setExpiryDate(e.target.value);
     }
     const handleUnitPrice = (e) => {
-        console.log(e.target.value)
         setUnitPrice(parseInt(e.target.value));
     }
     const handleQuantity = (e) => {
         setQuantity(parseInt(e.target.value));
     }
     const handleTarget = (e) => {
-        setTarget(parseInt(e.target.value));
+        // setTarget(parseInt(e.target.value));
+        setTarget(e.target.value);
     }
     const handleLocation = (e) => {
         setLocation(e.target.value);
@@ -76,10 +75,10 @@ const Addproduct = (props) => {
             setManufactureDate("");
             setEntryDate("");
             setExpiryDate("");
-            setQuantity();
+            setQuantity("");
             setLocation("");
-            setUnitPrice();
-            setTarget();
+            setUnitPrice("");
+            setTarget("");
     }
 
     const handleSelect = (event) => {
@@ -129,11 +128,11 @@ const Addproduct = (props) => {
             quantity: quantity,
             price: unitPrice,
         }
-        console.log("1")
-        console.log(obj)
+        // console.log("1")
+        // console.log(obj)
         const a = axios.post("http://localhost:5000/entry/existing",{...obj})
         .then((res)=>{
-            // handleClearInput();
+            handleClearInput();
             console.log(res);
             //toast.error(res.response.data.message);
         }).catch((err)=>{
@@ -181,11 +180,11 @@ const Addproduct = (props) => {
                         {isExistingSelected && <div className="pt-5">{
                             <div className="container mx-auto">
                                 {/* <input type ="text" placeholder="Product Name" className="h-9 w-full rounded-lg bg-zinc-100 border-black"/><br/><br/> */}
-                                <select onChange = {handleProductName} className="h-9 w-full rounded-lg bg-zinc-100 border-black my-5">
-                                    <option>--SELECT PRODUCT--</option>
+                                <select defaultValue={'DEFAULT'} onChange = {handleProductName} className="h-9 w-full rounded-lg bg-zinc-100 border-black my-5">
+                                    <option value="DEFAULT" disabled>--SELECT PRODUCT--</option>
                                     {products.map((product) => {
                                         return (
-                                        <option value={product.name}> {product.name} </option>)
+                                        <option value={product.productName}> {product.productName} </option>)
                                     })}
                                 </select>
                                 <input type ="number" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="h-9 w-full bg-zinc-100 rounded-lg"/><br/><br />
