@@ -26,7 +26,7 @@ const Login = () => {
             username: data.get("username"),
             password: data.get("password")
         }).then((res)=>{
-            navigate("mainpage")
+            navigate("/mainpage")
             // toast.error(err.response?.data?.message || err.message)
         }).catch((err)=>{
             toast.error(err.response?.data?.message || err.message)

@@ -79,9 +79,12 @@ router.delete('/remove',(req,res)=>{
             connection.execute('select * from productnumber where batchNumber=? and productId=?',[batchNumber,productId],(error,result)=>{
                 if (error) return res.send({error:error})
                 console.log(result)
+                if(result.length === 0){
+                    res.status(500).send({message:"result 0"})
+                }
                 const [len]=result
                 console.log(len)
-                if (len.quantity!==0)
+                if (len.quantity > 0 )
                 {
                     res.status(200).json({message:"sucess"})
                 }
