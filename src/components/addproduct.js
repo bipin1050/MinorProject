@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import swal from "sweetalert";
 
 const Addproduct = ({products}) => {
 
@@ -77,6 +78,12 @@ const Addproduct = ({products}) => {
             setLocation("");
             setUnitPrice("");
             setTarget("");
+            swal({
+                title: "ITEM ADDED SUCCESSFULY",
+                body: "",
+                icon : "success",
+                buttons :"OK"
+            })
     }
 
     const handleSelect = (event) => {

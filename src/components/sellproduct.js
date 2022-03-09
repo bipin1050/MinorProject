@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
-import Invoice from "./invoice";
+import swal from "sweetalert";
 
 const Sellproduct = (props) => {
   const products = props.products;
@@ -88,6 +87,12 @@ const Sellproduct = (props) => {
       .then((res) => {
         console.log(res);
         //toast.error(res.response.data.message);
+        swal({
+          title: "ITEM SOLD",
+          body: "",
+          icon : "success",
+          buttons :"Get Invoice"
+        })
         navigate("invoice", {
               state: {totalItems, customer}
             })

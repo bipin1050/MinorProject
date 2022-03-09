@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import swal from "sweetalert";
 
 const Removeproduct = (props) => {
   const products = props.products;
-
   const [productName, setProductName] = useState("");
   const [batchNo, setBatchNo] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -13,6 +13,12 @@ const Removeproduct = (props) => {
     setProductName("");
     setBatchNo("");
     setQuantity("");
+    swal({
+      title: "ITEM REMOVED SUCCESSFULY",
+      body: "",
+      icon : "success",
+      buttons :"OK"
+    })
   };
 
 
@@ -58,8 +64,7 @@ const Removeproduct = (props) => {
           {products.map((product, index) => {
             return (
               <option key={index} value={product.productName}>
-                {" "}
-                {product.productName}{" "}
+                {product.productName}
               </option>
             );
           })}
