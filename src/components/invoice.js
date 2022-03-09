@@ -1,16 +1,10 @@
-import { Laptop } from "@mui/icons-material";
-import { Table } from "@mui/material";
 import { createRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Pdf from "react-to-pdf";
 
 
 const Invoice = () => {
-const product = {
-    productName: "Laptop",
-    price: 120000,
-    quantity: 1
-}
+
 const { pathname, state} = useLocation()
 
 const ref = createRef()
@@ -39,10 +33,10 @@ const ref = createRef()
 
       <div className="mt-12">
         <div>
-          Bill To: <strong>Strides Shasun Ltd</strong>
+          Bill To: <strong>{state.customer.customerName}</strong>
         </div>
-        <div>Bannerghatt Road,</div>
-        <div>Bangalore - 560076</div>
+        <div>Company: <strong>{state.customer.company}</strong>{!state.customer.company.length && <i>NONE</i>}</div>
+        <div>Address: <strong>{state.customer.address}</strong></div>
       </div>
 
       <div className="mt-12">
@@ -57,12 +51,12 @@ const ref = createRef()
         </thead>
         <tbody className="divide-y divide-gray-200">
           {
-            state && state?.map((product, index) => (
+            state.totalItems && state.totalItems?.map((product, index) => (
             <tr key={index}>
               <td className="p-2">{product.productName}</td>
               <td className="p-2">{product.price}</td>
-              <td className="p-2">{product.units}</td>
-              <td className="p-2">{product.price * product.units}</td>
+              <td className="p-2">{product.quantity}</td>
+              <td className="p-2">{product.price * product.quantity}</td>
               <td>
               </td>
             </tr>
@@ -84,7 +78,7 @@ const ref = createRef()
       <div className="mt-12 text-center">Happiness Lies in Customer</div>
     </div>
     <Pdf targetRef={ref} filename="invoice.pdf" >
-        {({ toPdf }) => <button onClick={toPdf}>Download Invoice</button>}
+        {({ toPdf }) => <button onClick={toPdf} className="border-4 border-gray-700 rounded-lg">Download Invoice</button>}
       </Pdf>
       {/* <Document>
     <Page size="A4">

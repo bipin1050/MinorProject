@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Addproduct from "./addproduct";
 import Dashboard from "./dashboard";
-import Invoice from "./invoice";
 import DashboardNav from "./navbar";
 import Removeproduct from "./removeproduct";
 import Searchproduct from "./searchproduct";
-import Sellproduct from "./sellproduct";
 import InvoiceWrapper from './InvoiceWrapper'
+// import Invoice from "./invoice";
+// import Sellproduct from "./sellproduct";
 
 const Mainpage = () => {
 
@@ -27,7 +27,7 @@ const Mainpage = () => {
     .then((res)=>{
       setProducts(res.data)
     })
-  }, [products.length])
+  }, [])
 
   return (
     <DashboardNav>

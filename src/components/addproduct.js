@@ -3,9 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
-const Addproduct = (props) => {
-
-    const products = props.products;
+const Addproduct = ({products}) => {
 
     const [isNewSelected, setIsNewSelected] = useState(false);
     const [isExistingSelected, setIsExistingSelected] = useState(false);

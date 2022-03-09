@@ -8,14 +8,14 @@ const Searchproduct = (props) => {
 
   // const [products, setProducts] = useState(props.products);
   // const products = props.products;
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   
   useEffect(()=>{
     axios.get("http://localhost:5000/checkout")
     .then((res)=>{
       setProducts(res.data)
     })
-  }, [products.length])
+  }, [])
 
   const [searchValue, setSearchValue] = useState("");
 
