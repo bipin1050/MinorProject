@@ -1,7 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 import swal from "sweetalert";
 
 const Addproduct = ({products}) => {

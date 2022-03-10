@@ -20,13 +20,12 @@ const Signup = () => {
         const data = new FormData(e.currentTarget);
 
         if(data.get("password") === data.get("passwordConfirm")){
-            toast("Signed successfully")
             setIsPasswordOk(true);
         }
         else{
             toast("Password doesn't match")
         }
-
+        
         axios.post("http://localhost:5000/",{
             username: data.get("username"),
             password: data.get("password")

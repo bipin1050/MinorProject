@@ -23,6 +23,8 @@ const Dashboard = () => {
         setOption("option2");
     }
 
+    
+
     return (
         <div>
             <div className="scaledwidth">

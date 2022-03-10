@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {useForm} from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import swal from 'sweetalert';
 
 const Login = () => {
     // const(formDetail, setFormDetail) = useState(
@@ -26,6 +26,13 @@ const Login = () => {
             username: data.get("username"),
             password: data.get("password")
         }).then((res)=>{
+            // console.log(res)
+            swal({
+                title: "Status",
+                text: "Logged In",
+                icon : "success",
+                timer: 2000
+            });
             navigate("/mainpage")
             // toast.error(err.response?.data?.message || err.message)
         }).catch((err)=>{
