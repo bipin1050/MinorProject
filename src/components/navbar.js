@@ -157,7 +157,7 @@ export default function DashboardNav({ children }) {
             <ListItemIcon>
               <DashboardSharp />
             </ListItemIcon>
-            <ListItemText primary={"Dashboard"} />
+            <ListItemText primary={"Dashboard"} className ="text-gray-500" />
           </ListItemButton>
 
           <ListItemButton
@@ -169,7 +169,7 @@ export default function DashboardNav({ children }) {
             <ListItemIcon>
               <SearchIcon />
             </ListItemIcon>
-            <ListItemText primary={"List Items"} />
+            <ListItemText primary={"List Items"} className ="text-gray-500"/>
           </ListItemButton>
 
           <ListItemButton
@@ -181,7 +181,7 @@ export default function DashboardNav({ children }) {
             <ListItemIcon>
               <AddCircleOutlinedIcon />
             </ListItemIcon>
-            <ListItemText primary={"Add Items"} />
+            <ListItemText primary={"Add Items"} className ="text-gray-500"/>
           </ListItemButton>
 
           <ListItemButton
@@ -191,9 +191,9 @@ export default function DashboardNav({ children }) {
             }}
           >
             <ListItemIcon>
-              <RemoveCircleOutlinedIcon />
+              <RemoveCircleOutlinedIcon className ="text-gray-500" />
             </ListItemIcon>
-            <ListItemText primary={"Remove Items"} />
+            <ListItemText primary={"Remove Items"} className ="text-gray-500"/>
           </ListItemButton>
 
           <ListItemButton
@@ -203,9 +203,9 @@ export default function DashboardNav({ children }) {
             }}
           >
             <ListItemIcon>
-              <SellIcon />
+              <SellIcon className ="text-gray-500"/>
             </ListItemIcon>
-            <ListItemText primary={"Sell"} />
+            <ListItemText primary={"Sell"} className ="text-gray-500"/>
           </ListItemButton>
 
         </List>
