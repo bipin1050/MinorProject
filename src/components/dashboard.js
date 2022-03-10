@@ -22,70 +22,36 @@ const Dashboard = () => {
         setIsTotalActive(false);
         setOption("option2");
     }
+    const day =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Sat'];
+    const month =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+    let currentDay = currentDate.getDate();
+    let currentWeekDay = currentDate.getDay();
+    
 
     return (
         <div>
-            <div className="scaledwidth">
-                <div className="topBar ">
-                    <div className="leftSide w-4/5 inline-block border-r-4 border-slate-400">
-                        <div className="text-center text-4xl py-5 text-slate-400">
-                            Sales Activity
-                        </div>
-                        <div className=" flex justify-around text-center w-2/3 m-auto">
-                            <div className="p-6 border-4 border-indigo-500/75 rounded-lg">
-                                <div>To Be Delivered</div>
-                                <div>580 item</div>
-                            </div>
-                            <div className="p-6 border-4 border-indigo-500/75 rounded-lg">
-                                <div>Receiving Items</div>
-                                <div>580 item</div>
-                            </div>
-                            <div className="p-6 border-4 border-indigo-500/75 rounded-lg">
-                                <div>Pending Packing</div>
-                                <div>580 item</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="rightSide w-1/5 inline-block text-center">
-                        <div>
-                            Quantity Summary
-                        </div>
-                        <div className="my-5">
-                            <div className="py-2">Quantity in hand : </div>
-                            <div className="py-2">Quantity to be received : </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="my-3" style ={{width: "100%", height: "4px", marginLeft: "auto", marginRight: "auto", backgroundColor: "#b7d0e2",}}>
-                    <hr/>
-                </div>
-                <div className="flex justify-around">
-                    <div className="border-4">
-                        <div>
-                            Product Details
-                        </div>
-                        <div>
-                            <div>
-                                <div>Low Stock</div>
-                                <div>580 item</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="border-4">
-                        <div>Top Selling Items</div>
-                    </div>
-
-                </div>
+            <div className="container w-full h-36 border-2 rounded-md drop-shadow-2xl border-gray-300 ">
+                <div className=" text-center text-3xl h-24 w-full text-white flex flex-col justify-center" style={{backgroundColor:'#98c499'}}> <div>Product's Summary</div></div>
+                <div className=" text-sm text-center flex flex-col justify-center h-12"><div>As of  {day[currentWeekDay]} {month[currentMonth]} {currentDay}, {currentYear}</div></div>
             </div>
-            <p className="flex justify-center font-semibold text-3xl uppercase">Since Last 30 Days</p>
+            <div className="flex flex-row flex-wrap mt-4 justify-between">
+                <div className="w-1/4 mr-2 flex flex-col text-center justify-center rounded-md" style={{backgroundColor:'#dff0d8'}}><div className="font-medium ">Total Products</div></div>
+                <div className="w-1/4 mr-2 h-56"> Low Stock</div>
+                <div className="w-1/4 h-56">Total Orders</div>
+                <div className="w-1/4 mr-2 h-56">Pending Order</div>
+                <div className="w-1/4 mr-2 h-56">Expiring Soon !!!</div>
+            </div>
 
-            <Chart option = {option}/>
+            {/* <Chart option = {option}/>
 
             <div className="flex justify-center pt-10 text-2xl">
                 <button className="px-5 border-4" onClick={handleTotal}>Total Sale</button>
                 <button className="px-5 border-4" onClick={handleEach}>Individual Product</button>
                 {}
-            </div>
+            </div> */}
 
             {/* {
                 !isTotalActice 

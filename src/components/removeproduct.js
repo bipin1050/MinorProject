@@ -14,7 +14,7 @@ const Removeproduct = (props) => {
     setBatchNo("");
     setQuantity("");
     swal({
-      title: "ITEM REMOVED SUCCESSFULY",
+      title: "Item Removed Successfully !!!",
       body: "",
       icon : "success",
       buttons :"OK"
@@ -24,46 +24,51 @@ const Removeproduct = (props) => {
 
   const handleSubmitRemoveProduct = (event) => {
     event.preventDefault();
+    let conform = window.confirm("Are you sure want to delete?");
+    console.log(conform)
+    let obj = {};
+    if(conform){
     //const data = new FormData(event.currentTarget);
     //this is to sent to backend
-    const obj = {
+     let obj = {
       productName: productName,
       batchNumber: batchNo,
       quantity: quantity,
     };
     // console.log(obj)
     const a = axios
-      .delete("http://localhost:5000/entry/remove", { data: obj })
-      .then((res) => {
-        handleClearInput();
-        console.log(res);
-        //toast.error(res.response.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .delete("http://localhost:5000/entry/remove", { data: obj })
+    .then((res) => {
+      handleClearInput();
+      console.log(res);
+      //toast.error(res.response.data.message);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
     console.log(a);
+  }
   };
 
   return (
-    <div className="container mx-auto bg-zinc-200">
-      <div className="container mx-auto w-1/4 py-6 text-2xl text-center">
+    <div className="container mx-auto bg-gray-100 border-2 rounded-md shadow-xl w-4/5 ">
+      <div className="container mx-auto w-1/4 py-3 text-2xl text-center text-gray-600">
         Remove Product
-      </div>
-      <div className="container mx-auto container pb-10 w-1/4 text-xl text-center">
+      </div> <hr />
+      <div className="container mx-auto container mt-4 pb-4 w-1/4 text-xl text-center">
         {/* <input type ="text" placeholder="Product Name" className="h-9 w-full rounded-lg bg-zinc-100 border-black"/><br/><br/> */}
         <select
           id="defValue"
           onChange={(e) => setProductName(e.target.value)}
           defaultValue={"DEFAULT"}
-          className="h-9 w-full rounded-lg bg-zinc-100 border-black my-5"
+          className="  border-blue-300 text-sm p-2 border-2 w-44 focus:outline-none mb-2 focus:border-blue-500 rounded-md text-gray-500"
         >
-          <option value="DEFAULT" disabled>
-            --SELECT PRODUCT--
+          <option value="DEFAULT" disabled >
+            Select Product
           </option>
           {products.map((product, index) => {
             return (
-              <option key={index} value={product.productName}>
+              <option key={index} value={product.productName} className ="text-sm text-gray-400">
                 {product.productName}
               </option>
             );
@@ -74,9 +79,8 @@ const Removeproduct = (props) => {
           onChange={(e) => setBatchNo(e.target.value)}
           value={batchNo}
           placeholder="Batch Number"
-          className="h-9 w-full bg-zinc-100 rounded-lg"
+          className="  border-gray-300 text-sm p-1 border-2 w-44 focus:outline-none mb-2 focus:border-blue-500 rounded-md text-gray-500"
         />
-        <br />
         <br />
 
         <input
@@ -84,18 +88,19 @@ const Removeproduct = (props) => {
           onChange={(e) => setQuantity(e.target.value)}
           value={quantity}
           placeholder="Quantity"
-          className="h-9 w-full bg-zinc-100 rounded-lg"
+          className="  border-gray-300 text-sm p-1 border-2 w-44 focus:outline-none mb-2 focus:border-blue-500 rounded-md text-gray-500"
         />
         <br />
-        <br />
+        
 
         <div className="text-center">
           <button
             type="submit"
             onClick={handleSubmitRemoveProduct}
-            className="border-4 px-10 py-2 mb-10 rounded-2xl bg-green-700 hover:bg-stone-50 hover:text-black"
+            className="border-2 px-2 py-1 mb-2 mt-2 rounded-md text-base text-white bg-red-500 hover:bg-red-600"
           >
-            REMOVE
+            <i className="fa fa-trash mr-1">  </i>
+            Remove
           </button>
         </div>
       </div>

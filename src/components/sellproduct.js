@@ -104,8 +104,10 @@ const Sellproduct = (props) => {
   };
 
   return (
-    <div>
-      <div className="flex">
+    <div className="">
+      <div className="text-center text-2xl text-gray-500 mb-4"> Sell Products</div> <hr />
+      <div className="flex w-full justify-center mt-4">
+        <div>
         <input
           type="text"
           required
@@ -116,23 +118,26 @@ const Sellproduct = (props) => {
           onChange={(e) => {
             setCustomerName(e.target.value);
           }}
-          className="h-9 w-full bg-zinc-100 rounded-lg"
+          className="  border-gray-300 text-sm p-1 w-60 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
         />
-        <br />
-        <br />
+        </div>
+        <div>
+
+        
+        
         <input
           type="text"
           autoComplete="off"
-          placeholder="company"
+          placeholder="Company"
           name="company"
           value={company}
           onChange={(e) => {
             setCompany(e.target.value);
           }}
-          className="h-9 w-full bg-zinc-100 rounded-lg"
+          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
         />
-        <br />
-        <br />
+        </div>
+        
         {/* <input
           type="text"
           required
@@ -147,32 +152,31 @@ const Sellproduct = (props) => {
         />
         <br />
         <br /> */}
+        <div>
         <input
           type="text"
           required
           autoComplete="off"
-          placeholder="address"
+          placeholder="Address"
           name="address"
           value={address}
           onChange={(e) => {
             setAddress(e.target.value);
           }}
-          className="h-9 w-full bg-zinc-100 rounded-lg"
+          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
         />
+        </div>
         <br />
-        <br />
-      </div>
-
-      <div className="container mx-auto flex py-20">
+        <div>
         <select
           id="defValue"
           onChange={handleProduct}
           defaultValue="DEFAULT"
           name="productName"
-          className="h-9 w-full rounded-lg bg-zinc-100 border-black justify-start"
+          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9 w-52"
         >
           <option disabled value={"DEFAULT"}>
-            --SELECT PRODUCT--
+            Select Product
           </option>
           {products.map((product, index) => {
             return (
@@ -183,6 +187,10 @@ const Sellproduct = (props) => {
             );
           })}
         </select>
+        </div>
+      </div>
+
+      <div className="container mx-auto flex m-6 mt-4 justify-center">
         <input
           type="text"
           required
@@ -190,10 +198,10 @@ const Sellproduct = (props) => {
           name="batchNumber"
           value={oneItem.batchNumber}
           onChange={handleProduct}
-          className="h-9 w-full bg-zinc-100 rounded-lg"
+          className="  border-gray-300 text-sm p-1  border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
         />
         <br />
-        <br />
+        
         <input
           type="text"
           required
@@ -201,17 +209,17 @@ const Sellproduct = (props) => {
           name="quantity"
           value={oneItem.quantity}
           onChange={handleProduct}
-          className="h-9 w-full bg-zinc-100 rounded-lg"
+          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
         />
         <br />
-        <br />
+        
 
         <div className="text-center">
           <button
             type="submit"
             onClick={handleAddProduct}
-            className="border-4 px-10 py-2 mb-10 rounded-2xl bg-green-700 hover:bg-stone-50 hover:text-black"
-          >
+            className="border-1 px-5 py-1 mt-2 mb-10 rounded-md text-white" style ={{backgroundColor:'#42b72a'}}
+          ><i className="fa fa-plus mr-1 "></i>
             Add
           </button>
         </div>
