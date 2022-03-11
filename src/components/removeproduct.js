@@ -51,7 +51,7 @@ const Removeproduct = (props) => {
   };
 
   return (
-    <div className="container mx-auto bg-gray-100 border-2 rounded-md shadow-xl w-4/5 ">
+    <div className="container mx-auto bg-gray-100 border-2 rounded-md shadow-xl w-4/5 box-shadow ">
       <div className="container mx-auto w-1/4 py-3 text-2xl text-center text-gray-600">
         Remove Product
       </div> <hr />

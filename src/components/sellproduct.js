@@ -167,13 +167,16 @@ const Sellproduct = (props) => {
         />
         </div>
         <br />
+      </div>
+
+      <div className="container mx-auto flex m-6 mt-2 justify-center">
         <div>
         <select
           id="defValue"
           onChange={handleProduct}
           defaultValue="DEFAULT"
           name="productName"
-          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9 w-52"
+          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9 w-44"
         >
           <option disabled value={"DEFAULT"}>
             Select Product
@@ -188,9 +191,6 @@ const Sellproduct = (props) => {
           })}
         </select>
         </div>
-      </div>
-
-      <div className="container mx-auto flex m-6 mt-4 justify-center">
         <input
           type="text"
           required
@@ -209,7 +209,7 @@ const Sellproduct = (props) => {
           name="quantity"
           value={oneItem.quantity}
           onChange={handleProduct}
-          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
+          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9 w-28"
         />
         <br />
         

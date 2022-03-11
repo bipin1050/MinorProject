@@ -44,9 +44,11 @@ const Searchproduct = (props) => {
   })
 
   return (
-    <div className="py-8">
+    <div className="pb-1">
+      <div className="text-center text-2xl text-gray-500 mb-1 rounded-sm h-16  pt-5" style={{backgroundColor:'#f5f5f5'}}> All Products</div> <hr />
+
       <div
-        className="p-1 flex ml-auto w-1/3 border-2 rounded-md items-center mb-3 focus-within:border-blue-500"
+        className="p-1 flex ml-auto w-1/3 border-2 rounded-md items-center mt-6 mb-3 focus-within:border-blue-500"
       >
         <div>
           <SearchIcon className="fill-current text-gray-500" />
@@ -66,9 +68,9 @@ const Searchproduct = (props) => {
           {showClearButton && <button onClick={handleClearButton}><CloseOutlinedIcon className="text-zinc-500" /></button>}
         </div>
       </div>
-      <table className="w-full divide-y divide-gray-200 border border-gray-200">
+      <table className="w-full box-shadow divide-y divide-gray-200 border border-gray-200">
         <thead>
-          <tr className="bg-blue-500 text-white">
+          <tr className=" text-white"style={{ backgroundColor: '#5c94ed' }}>
             <th className="p-2 text-left">Name</th>
             <th className="p-2 text-left">Price</th>
             <th className="p-2 text-left">Quantity</th>
