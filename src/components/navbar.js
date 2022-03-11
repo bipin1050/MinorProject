@@ -132,7 +132,7 @@ export default function DashboardNav({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Inventory Manager
+            <span className="font"> Inventory Manager </span>
           </Typography>
         </Toolbar>
       </AppBar>

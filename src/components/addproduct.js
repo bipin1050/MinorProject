@@ -156,7 +156,7 @@ const Addproduct = ({ products }) => {
     return (
         <div>
             <form>
-                <div className= 'container mx-auto shadow-xl w-4/5 border-1 bg-gray-50 border-2 border-gray-300 rounded-md'>
+                <div className= 'container mx-auto shadow-xl w-4/5 border-1 bg-gray-50 border-2 border-gray-300 rounded-md box-shadow'>
                     <div className="container mx-auto py-3 text-2xl text-center text-gray-600">Add Product</div>
                     <hr />
                     <div className="container pb-4 w-full text-xl">
