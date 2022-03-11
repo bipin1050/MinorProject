@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import swal from 'sweetalert';
 
 const Signup = () => {
 
@@ -26,16 +27,39 @@ const Signup = () => {
             toast("Password doesn't match")
         }
         
-        axios.post("http://localhost:5000/",{
-            username: data.get("username"),
-            password: data.get("password")
-        }).then((res)=>{
-            navigate("mainpage")
-            // toast.error(err.response?.data?.message || err.message)
-        }).catch((err)=>{
-            toast.error(err.response?.data?.message || err.message)
-            console.log(err.response)
-        })
+        if(data.get("username").length < 5){
+            toast("Username too short")
+        }
+        else{
+            axios.post("http://localhost:5000/",{
+                username: data.get("username")
+            }).then((res)=>{
+                setIsUsernameOk(true);
+                // toast.error(err.response?.data?.message || err.message)
+            }).catch((err)=>{
+                console.log(err.response)
+            })
+        }
+        
+
+        if(isPasswordOk && isUsernameOk){
+            axios.post("http://localhost:5000/",{
+                username: data.get("username"),
+                password: data.get("password")
+            }).then((res)=>{
+                swal({
+                    title: "User created successfully",
+                    icon : "success",
+                    timer: 2000
+                });
+                navigate("/login")
+                // toast.error(err.response?.data?.message || err.message)
+            }).catch((err)=>{
+                toast.error(err.response?.data?.message || err.message)
+                console.log(err.response)
+            })
+        }
+        
     }
 
 

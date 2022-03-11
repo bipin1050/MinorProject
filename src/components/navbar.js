@@ -16,14 +16,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardSharp from "@mui/icons-material/DashboardSharp";
 import SearchIcon from "@mui/icons-material/Search";
-import Dashboard from "./dashboard";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
 import SellIcon from "@mui/icons-material/Sell";
 import { Navigate, Routes, useLocation, useNavigate } from "react-router";
-import { Route } from "@mui/icons-material";
-import Addproduct from "./addproduct";
 import { Container, ListItemButton } from "@mui/material";
+import HistoryIcon from '@mui/icons-material/History';
 
 const drawerWidth = 240;
 
@@ -210,6 +208,19 @@ export default function DashboardNav({ children }) {
 
         </List>
         <Divider />
+        <List>
+          <ListItemButton
+            selected={pathname.includes("saleshistory")}
+            onClick={() => {
+              navigate("saleshistory");
+            }}
+          >
+            <ListItemIcon>
+              <HistoryIcon className ="text-gray-500"/>
+            </ListItemIcon>
+            <ListItemText primary={"Sales History"} className ="text-gray-500"/>
+          </ListItemButton>
+        </List>
       </Drawer>
       <Box
         component="main"

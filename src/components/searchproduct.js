@@ -75,7 +75,7 @@ const Searchproduct = (props) => {
             <th className="p-2 text-left">Batch Number</th>
             <th className="p-2 text-left">Manufacturer</th>
             <th className="p-2 text-left">Category</th>
-            <th className="p-2 text-left">Action</th>
+            <th className="p-2 text-left">Target</th>
           </tr>
         </thead>
 
@@ -93,8 +93,7 @@ const Searchproduct = (props) => {
               <td className="p-2">{product.batchNumber}</td>
               <td className="p-2">{product.manufacturer}</td>
               <td className="p-2">{product.category}</td>
-              <td>
-              </td>
+              <td className="p-2">{product.target}</td>
             </tr>)
           })}
 

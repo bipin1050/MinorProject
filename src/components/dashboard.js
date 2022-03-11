@@ -11,6 +11,16 @@ const Dashboard = () => {
     })
     }, [])
 
+    var today = new Date(), date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    if(today.getMonth()+1 <=9 ){
+        if(today.getDate() <=9 ){
+            date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + today.getDate();
+        }
+        else{
+            date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
+        }
+    }
+
     const [option, setOption] = useState('option1');
     const [isTotalActice, setIsTotalActive] = useState(true);
     
@@ -22,6 +32,35 @@ const Dashboard = () => {
         setIsTotalActive(false);
         setOption("option2");
     }
+
+
+    // const [lowStocks, setLowStocks] = useState([]);
+    // const [expiredStocks, setExpiredStocks] = useState([]);
+    // console.log(products[0].target)
+    const lowStocks = products
+        .map((product) => {
+            if (product.quantity <= 0.05 * Number(product.target)) {
+            return {
+                productName: product.productName,
+                quantity: product.quantity
+            };
+            }
+        })
+        .filter((product) => product);
+    
+    const expiredStocks = products
+        .map((product) => {
+            if (product.expiryDate <= date) {
+                console.log(product.expiryDate)
+                return {
+                    productName: product.productName,
+                    quantity: product.quantity
+                };
+            }
+        })
+        .filter((product) => product);
+    console.log(expiredStocks)
+        
     const day =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Sat'];
     const month =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     let currentDate = new Date();
@@ -47,13 +86,13 @@ const Dashboard = () => {
                 <div className="w-1/4 mr-2 h-56">Expiring Soon !!!</div>
             </div>
 
-            {/* <Chart option = {option}/>
+            <Chart option = {option}/>
 
             <div className="flex justify-center pt-10 text-2xl">
                 <button className="px-5 border-4" onClick={handleTotal}>Total Sale</button>
                 <button className="px-5 border-4" onClick={handleEach}>Individual Product</button>
                 {}
-            </div> */}
+            </div>
 
             {/* {
                 !isTotalActice 
