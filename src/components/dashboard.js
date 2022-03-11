@@ -32,12 +32,6 @@ const Dashboard = () => {
         setIsTotalActive(false);
         setOption("option2");
     }
-<<<<<<< HEAD
-
-
-    // const [lowStocks, setLowStocks] = useState([]);
-    // const [expiredStocks, setExpiredStocks] = useState([]);
-    // console.log(products[0].target)
     const lowStocks = products
         .map((product) => {
             if (product.quantity <= 0.05 * Number(product.target)) {
@@ -61,13 +55,9 @@ const Dashboard = () => {
         })
         .filter((product) => product);
     console.log(expiredStocks)
-        
-    const day =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Sat'];
-    const month =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-=======
+    
     const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat'];
     const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
->>>>>>> 47c24363d11089213876978c240fdb216a0bf592
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
