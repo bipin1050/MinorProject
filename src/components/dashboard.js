@@ -82,7 +82,8 @@ const Dashboard = () => {
             if (product.quantity <= 0.05 * Number(product.target)) {
             return {
                 productName: product.productName,
-                quantity: product.quantity
+                quantity: product.quantity,
+                target: product.target
             };
             }
         })
@@ -131,7 +132,7 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-row flex-wrap mt-4 justify-between">
                 <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" style={{ backgroundColor: '#dff0d8' }}>
-                    <div className="font-medium ">Total Stock Count
+                    <div className="font-medium ">Items Type
                     </div>
                     <div>
                         <h1 className="badge text-6xl" style={{ backgroundColor: '#3c763d' }}>{products.length}</h1>
@@ -178,11 +179,13 @@ const Dashboard = () => {
                         {isLowStockClicked && <>
                             <th className="p-2">Product Name</th>
                             <th className="p-2">Quantity</th>
+                            <th className="p-2">Target</th>
                         </>}
                         {isLowStockClicked && lowStocks.map((product, idx) => {
                             return (<tr key={idx}>
                             <td className="p-2">{product.productName}</td>
                             <td className="p-2">{product.quantity}</td>
+                            <td className="p-2">{product.target}</td>
                             </tr>)
                         })}
                     </tbody>
