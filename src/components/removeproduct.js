@@ -1,9 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import swal from "sweetalert";
 
-const Removeproduct = (props) => {
-  const products = props.products;
+const Removeproduct = () => {
+
+  const [products, setProducts] = useState([]);
+  
+  useEffect(()=>{
+    axios.get("http://localhost:5000/checkout")
+    .then((res)=>{
+      setProducts(res.data)
+    })
+  }, [products])
+
   const [productName, setProductName] = useState("");
   const [batchNo, setBatchNo] = useState("");
   const [quantity, setQuantity] = useState("");

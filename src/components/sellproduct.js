@@ -1,10 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import swal from "sweetalert";
 
-const Sellproduct = (props) => {
-  const products = props.products;
+const Sellproduct = () => {
+
+  const [products, setProducts] = useState([]);
+  
+  useEffect(()=>{
+    axios.get("http://localhost:5000/checkout")
+    .then((res)=>{
+      setProducts(res.data)
+    })
+  }, [products]);
 
   const navigate = useNavigate();
 

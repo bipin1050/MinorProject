@@ -9,7 +9,7 @@ const Saleshistory = () => {
         .then((res)=>{
             setSoldProducts(res.data)
         })
-    },[])
+    },[soldProducts])
 
 
     return ( 

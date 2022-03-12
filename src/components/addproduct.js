@@ -1,10 +1,17 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import swal from "sweetalert";
 
-const Addproduct = ({ products }) => {
+const Addproduct = () => {
 
-    
+    const [products, setProducts] = useState([]);
+  
+  useEffect(()=>{
+    axios.get("http://localhost:5000/checkout")
+    .then((res)=>{
+      setProducts(res.data)
+    })
+  }, [products])    
 
     const [isNewSelected, setIsNewSelected] = useState(false);
     const [isExistingSelected, setIsExistingSelected] = useState(false);

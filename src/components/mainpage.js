@@ -21,17 +21,17 @@ const Mainpage = () => {
     .then((res)=>{
       setProducts(res.data)
     })
-  }, [])
+  }, [products])
 
   return (
     <DashboardNav>
       <Routes>
         <Route index element={<Dashboard />}/>
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="addproduct" element={<Addproduct products={products} />} />
-        <Route path="removeproduct" element={<Removeproduct products={products}/>} />
+        <Route path="addproduct" element={<Addproduct />} />
+        <Route path="removeproduct" element={<Removeproduct/>} />
         <Route path="searchproduct" element={<Searchproduct />} />
-        <Route path="sellproduct/*" element={<InvoiceWrapper products={products} />} />
+        <Route path="sellproduct/*" element={<InvoiceWrapper />} />
         <Route path="saleshistory" element={<Saleshistory />} />
       </Routes>
     </DashboardNav>
