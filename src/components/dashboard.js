@@ -12,6 +12,11 @@ const Dashboard = () => {
     }, [])
 
     var today = new Date(), date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+    const addDate = () => {
+
+    }
+
     if(today.getMonth()+1 <=9 ){
         if(today.getDate() <=9 ){
             date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + today.getDate();
@@ -32,6 +37,46 @@ const Dashboard = () => {
         setIsTotalActive(false);
         setOption("option2");
     }
+
+
+    const [isLowStockClicked, setIsLowStockClicked] =useState(false);
+    const [isExpiredStockClicked, setIsExpiredStockClicked] =useState(false);
+    // const [isExpiringStockClicked, setIsExpiringStockClicked] =useState(false);
+
+    const toggleLowStock = () => {
+        setIsExpiredStockClicked(false);
+        // setIsExpiringStockClicked(false);
+        if(isLowStockClicked === true){
+            setIsLowStockClicked(false);
+        }
+        else {
+            setIsLowStockClicked(true);
+        }
+        // console.log(islowStockClicked)
+    }
+    const toggleExpiredStock = () => {
+        setIsLowStockClicked(false);
+        // setIsExpiringStockClicked(false);
+        if(isExpiredStockClicked === true){
+            setIsExpiredStockClicked(false);
+        }
+        else {
+            setIsExpiredStockClicked(true);
+        }
+        // console.log(islowStockClicked)
+    }
+    // const toggleExpiringStock = () => {
+    //     setIsLowStockClicked(false);
+    //     setIsExpiredStockClicked(false);
+    //     if(isExpiringStockClicked === true){
+    //         setIsExpiringStockClicked(false);
+    //     }
+    //     else {
+    //         setIsExpiringStockClicked(true);
+    //     }
+    //     // console.log(islowStockClicked)
+    // }
+
     const lowStocks = products
         .map((product) => {
             if (product.quantity <= 0.05 * Number(product.target)) {
@@ -46,15 +91,29 @@ const Dashboard = () => {
     const expiredStocks = products
         .map((product) => {
             if (product.expiryDate <= date) {
-                console.log(product.expiryDate)
+                // console.log(product.expiryDate)
                 return {
                     productName: product.productName,
-                    quantity: product.quantity
+                    expiryDate: product.expiryDate
                 };
             }
         })
         .filter((product) => product);
-    console.log(expiredStocks)
+
+    // const expiringStocks = products
+    //     .map((product) => {
+    //         if (
+    //             (product.expiryDate > date) && 
+    //             ((product.expiryDate-product.manufactureDate) <= product.expiryDate)
+    //         ) {
+    //             // console.log(product.expiryDate)
+    //             return {
+    //                 productName: product.productName,
+    //                 quantity: product.quantity
+    //             };
+    //         }
+    //     })
+    //     .filter((product) => product);
     
     const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat'];
     const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -64,9 +123,6 @@ const Dashboard = () => {
     let currentDay = currentDate.getDate();
     let currentWeekDay = currentDate.getDay();
 
-
-
-
     return (
         <div className="font">
             <div className="container w-full h-36  rounded-md  box-shadow ">
@@ -75,32 +131,78 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-row flex-wrap mt-4 justify-between">
                 <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" style={{ backgroundColor: '#dff0d8' }}>
-                    <div className="font-medium ">Total Products
+                    <div className="font-medium ">Total Stock Count
                     </div>
                     <div>
-                        <h1 className="badge text-6xl" style={{ backgroundColor: '#3c763d' }}>3</h1>
+                        <h1 className="badge text-6xl" style={{ backgroundColor: '#3c763d' }}>{products.length}</h1>
                     </div>
                 </div>
-                <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" style={{ backgroundColor: '#f2dede' }}>
-                    <div className="font-medium">
+                <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" onClick={()=>{toggleLowStock()}} style={{ backgroundColor: '#f2dede' }}>
+                    <div className="font-medium" >
                         Low Stock
                     </div>
-                    <div>
-                        <h1 className="badge text-6xl" style={{ backgroundColor: '#a94442' }}>4</h1>
+                    <div >
+                        <h1 className="badge text-6xl" style={{ backgroundColor: '#a94442' }}>{lowStocks.length}</h1>
                     </div>
                 </div>
-                <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md h-56 from-inherit" style={{ backgroundColor: '#d9edf7' }}>
+                <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md h-56 from-inherit" onClick={()=>{toggleExpiredStock()}} style={{ backgroundColor: '#d9edf7' }}>
                     <div className="font-medium">
-                    Total Orders
+                    Expired
                         </div>
                         <div>
-                        <h1 className="badge text-6xl" style={{ backgroundColor: '#31708f' }}>4</h1>
+                        <h1 className="badge text-6xl" style={{ backgroundColor: '#31708f' }}>{expiredStocks.length}</h1>
         
                         </div>
                 </div>
-                <div className="w-1/4 mr-2 h-56">Pending Order</div>
-                <div className="w-1/4 mr-2 h-56">Expiring Soon !!!</div>
             </div>
+            <div className="py-6">
+                <div>
+                    <tbody>
+                        {/* {console.log(products)}
+                        {console.log(lowStocks)}
+                        {console.log(isLowStockClicked)} */}
+                        {isExpiredStockClicked && <>
+                            <th className="p-2">Product Name</th>
+                            <th className="p-2">Expiry Date</th>
+                        </>}
+                        {isExpiredStockClicked && expiredStocks.map((product, idx) => {
+                            return (<tr key={idx}>
+                            <td className="p-2">{product.productName}</td>
+                            <td className="p-2">{product.expiryDate.substr(0,10)}</td>
+                            </tr>)
+                        })}
+                    </tbody>
+                </div>
+                <div>
+                    <tbody>
+                        {isLowStockClicked && <>
+                            <th className="p-2">Product Name</th>
+                            <th className="p-2">Quantity</th>
+                        </>}
+                        {isLowStockClicked && lowStocks.map((product, idx) => {
+                            return (<tr key={idx}>
+                            <td className="p-2">{product.productName}</td>
+                            <td className="p-2">{product.quantity}</td>
+                            </tr>)
+                        })}
+                    </tbody>
+                </div>
+            </div>
+            {/* <div className=" my-5 flex flex-col text-center justify-center rounded-md h-20 from-inherit" onClick={()=>{toggleExpiringStock()}} style={{ backgroundColor: '#d9edf7' }}>
+                    <div className="font-medium">
+                        Expiring Soon : <h1 className="badge text-6xl" style={{ backgroundColor: '#31708f' }}>{expiringStocks.length}</h1>
+                    </div>
+            </div>
+            <div>
+                <tbody>
+                    {isExpiringStockClicked && expiringStocks.map((product, idx) => {
+                        return (<tr key={idx}>
+                        <td className="p-2">{product.productName}</td>
+                        <td className="p-2">{product.quantity}</td>
+                        </tr>)
+                    })}
+                </tbody>
+            </div> */}
 
             <Chart option = {option}/>
 
