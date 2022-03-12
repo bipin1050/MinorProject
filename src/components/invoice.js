@@ -6,12 +6,11 @@ import Pdf from "react-to-pdf";
 const Invoice = () => {
 
 const { pathname, state} = useLocation()
-
 const ref = createRef()
 
   return (
     <div>
-    <div className="p-5 max-w-2xl mx-auto" ref={ref}>
+    <div className="p-5 mx-auto" style={{maxWidth : "8.1in"}} ref={ref}>
       <div className="flex justify-center items-center">
           <p className="font-semibold text-xl">Invoice</p>
       </div>
@@ -73,12 +72,10 @@ const ref = createRef()
         </div>
       </div>
 
-      <div className="mt-12 text-center">notes</div>
-
       <div className="mt-12 text-center">Happiness Lies in Customer</div>
     </div>
     <Pdf targetRef={ref} filename="invoice.pdf" >
-        {({ toPdf }) => <button onClick={toPdf} className="border-4 border-gray-700 rounded-lg">Download Invoice</button>}
+        {({ toPdf }) => <button onClick={toPdf} className="border-4 border-gray-700 rounded-lg alig">Download Invoice</button>}
       </Pdf>
       {/* <Document>
     <Page size="A4">
