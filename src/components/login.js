@@ -45,7 +45,7 @@ const Login = () => {
 
 
     return (
-        <div className='w-full h-full bg-gray-100 pt-24 pb-56'>
+        <div className='h-screen bg-gray-100 pt-24'>
             <div className=' h-96 bg-gray-200 w-1/3 mx-auto border-2 rounded-md items-center box-shadow'>
             <div><h1 className='text-center text-3xl text-gray-500 my-10'>Login Panel</h1></div><hr />
                 <form onSubmit={handleSubmit}>
