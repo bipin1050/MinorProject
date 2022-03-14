@@ -207,7 +207,7 @@ const Dashboard = () => {
                 </tbody>
             </div> */}
 
-            <Chart option = {option}/>
+            <Chart />
 
             <div className="flex justify-center pt-10 text-2xl">
                 <button className="px-5 border-4" onClick={handleTotal}>Total Sale</button>

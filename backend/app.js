@@ -9,11 +9,15 @@ app.use(express.json())
 app.use(cors())
 const connection=require("./db/db");
 
+
 const login=require("./routes/login")
+const dashboard = require("./routes/dashboard")
 const products=require("./routes/products")
 const entry=require("./routes/entry")
 const checkout=require("./routes/checkout")
+
 app.use("/login",login)
+app.use("/dashboard",dashboard)
 app.use("/entry",entry)
 app.use("/product",products)
 app.use("/checkout",checkout)

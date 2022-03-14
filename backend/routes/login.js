@@ -23,4 +23,30 @@ router.post('/',(req,res)=>{
         }
     })
 })
+router.post("/new",(req,res)=>{
+    const {username,password}=req.body;
+    connection.execute('insert into employee (employee,password) values (?,?)',[username,password],(error,result)=>{
+        if (error) return res.json({error:error})
+        res.json({"success":"success"})
+    })
+})
+router.post("/checkname",(req,res)=>{
+    const {username}=req.body;
+    connection.execute('select * from employee where employee=?',[username],(error,result)=>{
+        if (error) 
+        {
+            console.log("error")
+            return res.json({error:error})
+        }
+        if(result.length>0){
+            console.log("same user")
+            res.status(200).send({message:"failed"})
+        }
+        else{
+            console.log("user ok")
+            res.status(200).send({message:"success"})
+        }
+
+    })
+})
 module.exports=router

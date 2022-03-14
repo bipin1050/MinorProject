@@ -71,4 +71,11 @@ router.post("/",(req,res)=>{
         }
     })
 })
+router.get("/salesdetail",(req,res)=>{
+    connection.execute('select * from salesdetail natural join customer ',(err,result)=>{
+        if(err) res.json({err:err})
+        console.log(result)
+        res.json(result)
+    })
+})
 module.exports=router;

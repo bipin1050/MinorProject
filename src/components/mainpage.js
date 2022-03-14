@@ -21,7 +21,7 @@ const Mainpage = () => {
     .then((res)=>{
       setProducts(res.data)
     })
-  }, [products])
+  }, [])
 
   return (
     <DashboardNav>

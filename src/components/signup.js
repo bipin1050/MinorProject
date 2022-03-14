@@ -9,10 +9,6 @@ const Signup = () => {
     const handleSubmit = (e) => {
 
     }
-
-    const [isUsernameOk, setIsUsernameOk] = useState(false);
-    const [isPasswordOk, setIsPasswordOk] = useState(false);
-
     const navigate = useNavigate();
     
 
@@ -20,44 +16,48 @@ const Signup = () => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
 
-        if(data.get("password") === data.get("passwordConfirm")){
-            setIsPasswordOk(true);
+        if(data.get("password") === data.get("passwordConfirm") && data.get("username").length >= 5){
+            if(data.get("password").length < 8){
+                toast("Password too short !")
+            }else{
+                axios.post("http://localhost:5000/login/checkname",{
+                    username: data.get("username")
+                }).then((res)=>{
+                    console.log(res)
+                    if(res.data.message === "success"){
+                        axios.post("http://localhost:5000/login/new",{
+                            username: data.get("username"),
+                            password: data.get("password")
+                        }).then((res)=>{
+                            swal({
+                                title: "User created successfully",
+                                icon : "success",
+                                timer: 2000
+                            });
+                            navigate("/login")
+                            // toast.error(err.response?.data?.message || err.message)
+                        }).catch((err)=>{
+                            toast.error(err.response?.data?.message || err.message)
+                            console.log(err.response)
+                        })
+                    }
+                    else if (res.data.message === "failed"){
+                        toast("User Already Exists")
+                    }
+                    // toast.error(err.response?.data?.message || err.message)
+                }).catch((err)=>{
+                    console.log(err.response)
+                })
+            }
         }
         else{
-            toast("Password doesn't match")
-        }
-        
-        if(data.get("username").length < 5){
-            toast("Username too short")
-        }
-        else{
-            axios.post("http://localhost:5000/",{
-                username: data.get("username")
-            }).then((res)=>{
-                setIsUsernameOk(true);
-                // toast.error(err.response?.data?.message || err.message)
-            }).catch((err)=>{
-                console.log(err.response)
-            })
-        }
-        
-
-        if(isPasswordOk && isUsernameOk){
-            axios.post("http://localhost:5000/",{
-                username: data.get("username"),
-                password: data.get("password")
-            }).then((res)=>{
-                swal({
-                    title: "User created successfully",
-                    icon : "success",
-                    timer: 2000
-                });
-                navigate("/login")
-                // toast.error(err.response?.data?.message || err.message)
-            }).catch((err)=>{
-                toast.error(err.response?.data?.message || err.message)
-                console.log(err.response)
-            })
+            if(data.get("password") != data.get("passwordConfirm")){
+                toast("Password doesn't match")
+            }
+            else if(data.get("username").length < 5){
+                toast("Username too short")
+            }
+            else{}
         }
         
     }
