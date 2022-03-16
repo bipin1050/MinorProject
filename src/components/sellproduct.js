@@ -205,7 +205,7 @@ const Sellproduct = () => {
           <button
             type="submit"
             onClick={handleAddProduct}
-            className="border-1 px-5 py-1 mt-2 mb-10 rounded-md text-white" style ={{backgroundColor:'#42b72a'}}
+            className="button-green mt-3 ml-1"
           ><i className="fa fa-plus mr-1 "></i>
             Add
           </button>

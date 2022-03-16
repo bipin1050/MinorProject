@@ -48,3 +48,37 @@
   vertical-align: middle;
   border-radius: 10px;
 }
+.button-green{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.37rem;
+  color: white;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background-color: #42b72a;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.button-blue{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.37rem;
+  color: white;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background-color: #1877f2;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.button-green:hover{
+  background-color: #43c72a;
+}
+.button-green:active{
+  background-color: #42b72a;
+}
+.button-blue:hover{
+  background-color: #2784f5;
+}
+.button-blue:active{
+  background-color: #1877f2;
+}
