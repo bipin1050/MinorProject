@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import swal from "sweetalert";
 
 const Addproduct = () => {
@@ -54,10 +55,9 @@ const Addproduct = () => {
     }
     const handleQuantity = (e) => {
         if (e.target.value > 0) {
-
             setQuantity(parseInt(e.target.value));
         } else {
-            console.log("Quantity must be greater than 0");
+            toast("Quantity must be greater than 0");
         }
     }
     const handleTarget = (e) => {

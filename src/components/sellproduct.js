@@ -61,7 +61,6 @@ const Sellproduct = () => {
         }
       })
       .filter((product) => product);
-    // console.log(singleProduct[0]);
 
     {
       oneItem.productName.length > 0 &&
@@ -76,12 +75,6 @@ const Sellproduct = () => {
     });
     document.getElementById("defValue").value = "DEFAULT";
   };
-
-  // console.log(totalItems);
-  // console.log(products);
-  // console.log(oneItem);
-  // console.log(totalItems);
-
   
   const handleSellProduct = (event) => {
     event.preventDefault();
@@ -108,7 +101,7 @@ const Sellproduct = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log(a);
+    // console.log(a);
   };
 
   return (
@@ -146,20 +139,6 @@ const Sellproduct = () => {
         />
         </div>
         
-        {/* <input
-          type="text"
-          required
-          autoComplete="off"
-          placeholder="contact"
-          name="contact"
-          value={buyerContact}
-          onChange={(e) => {
-            setBuyerContact(e.target.value);
-          }}
-          className="h-9 w-full bg-zinc-100 rounded-lg"
-        />
-        <br />
-        <br /> */}
         <div>
         <input
           type="text"

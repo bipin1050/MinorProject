@@ -14,9 +14,9 @@ router.get("/",(req,res)=>{
 router.post("/",(req,res)=>{
     const {customer,salesdata}=req.body;
     const {customerName,company,address}=customer
-    console.log(customerName)
-    console.log(address)
-    console.log(salesdata)
+    // console.log(customerName)
+    // console.log(address)
+    // console.log(salesdata)
     connection.execute('insert into customer (name,company,address) values (?,?,?)',[customerName,company,address],(error,result)=>{
         if (error) {return res.json({error:error})}
         console.log("customer info inserted")
@@ -26,6 +26,7 @@ router.post("/",(req,res)=>{
         result=result[result.length-1]
         billnumber=result.billnumber
         console.log(billnumber)
+        let count = 0;
         for (data of salesdata){
             console.log(data)
             let {productName,quantity,batchNumber,price,salesDate}=data
@@ -46,9 +47,13 @@ router.post("/",(req,res)=>{
                             return// res.status(500).send({message:"result 0"})
                         }
                         const [len]=result
+                        console.log(len)
                         if (len.quantity > 0 )
                         {
-                            res.status(200).json({message:"sucess"})
+                            count++;
+                            console.log(count)
+                            if(count === salesdata.length)
+                                res.json({message:"sucess"})
                         }
                         else
                         {

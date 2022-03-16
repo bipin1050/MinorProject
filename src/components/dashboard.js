@@ -27,7 +27,7 @@ const Dashboard = () => {
     }
 
     const [option, setOption] = useState('option1');
-    const [selectedProduct, setSelectedProduct] =useState();
+    const [selectedProduct, setSelectedProduct] =useState("");
     const [isTotalActive, setIsTotalActive] = useState(true);
 
     const handleTotal = (e) => {
@@ -218,7 +218,7 @@ const Dashboard = () => {
                 </tbody>
             </div> */}
 
-            <Chart values = {option} />
+            <Chart values = {option } selectedProduct = {selectedProduct} />
 
             <div className="flex justify-center mt-3">
                 <button className="px-2 text-base mr-4 py-1 text-white rounded-md" style={{ backgroundColor: '#1877f2' }} onClick={handleTotal}>Total Sale</button>

@@ -67,11 +67,49 @@ router.post('/new',(req,res)=>{
     })
 })
 
+// router.delete('/remove',(req,res)=>{
+//     const {productName,batchNumber,quantity,}=req.body;
+//     let productId;
+//     console.log(req);
+//     console.log(productName,batchNumber,quantity)
+//     connection.execute('select productId from product where productName=?',[productName],(error,result)=>{
+//         if(error) return res.json({error:error});
+//         result=result[result.length-1]
+//         productId=result.productId
+//         connection.execute('update  productnumber set quantity=quantity-?  where productId=? and batchNumber=?',[quantity,productId,batchNumber],(error,result)=>{
+//             if(error) return res.json({error:error});
+//             console.log("sucess")
+//             connection.execute('select * from productnumber where batchNumber=? and productId=?',[batchNumber,productId],(error,result)=>{
+//                 if (error) return res.send({error:error})
+//                 console.log(result)
+//                 if(result.length === 0){
+//                     return// res.status(500).send({message:"result 0"})
+//                 }
+//                 const [len]=result
+//                 console.log(len)
+//                 if (len.quantity > 0 )
+//                 {
+//                     res.status(200).json({message:"sucess"})
+//                 }
+//                 else{
+//                     connection.execute(' delete from productnumber WHERE batchNumber=? and productId=?',[batchNumber,productId],(error,result)=>{
+//                         if (error) return res.json({error:error})
+//                         connection.execute(' delete from productdate WHERE batchNumber=? and productId=?',[batchNumber,productId],(error,result)=>{
+//                             if (error) return res.json({error:error})
+//                             connection.execute(' delete from productprice WHERE batchNumber=? and productId=?',[batchNumber,productId],(error,result)=>{
+//                                 if (error) return res.json({error:error})
+//                                 return res.send({message:"deleted"})
+//                             })
+//                         })
+//                     })
+//                 }
+//             })
+//         })
+//     })
+// })
 router.delete('/remove',(req,res)=>{
     const {productName,batchNumber,quantity,}=req.body;
     let productId;
-    console.log(req);
-    console.log(productName,batchNumber,quantity)
     connection.execute('select productId from product where productName=?',[productName],(error,result)=>{
         if(error) return res.json({error:error});
         result=result[result.length-1]
@@ -82,12 +120,9 @@ router.delete('/remove',(req,res)=>{
             connection.execute('select * from productnumber where batchNumber=? and productId=?',[batchNumber,productId],(error,result)=>{
                 if (error) return res.send({error:error})
                 console.log(result)
-                if(result.length === 0){
-                    res.status(500).send({message:"result 0"})
-                }
                 const [len]=result
                 console.log(len)
-                if (len.quantity > 0 )
+                if (len.quantity > 0)
                 {
                     res.status(200).json({message:"sucess"})
                 }
