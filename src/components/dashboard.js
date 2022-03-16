@@ -17,11 +17,11 @@ const Dashboard = () => {
 
     }
 
-    if(today.getMonth()+1 <=9 ){
-        if(today.getDate() <=9 ){
+    if (today.getMonth() + 1 <= 9) {
+        if (today.getDate() <= 9) {
             date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + today.getDate();
         }
-        else{
+        else {
             date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
         }
     }
@@ -39,14 +39,14 @@ const Dashboard = () => {
     }
 
 
-    const [isLowStockClicked, setIsLowStockClicked] =useState(false);
-    const [isExpiredStockClicked, setIsExpiredStockClicked] =useState(false);
+    const [isLowStockClicked, setIsLowStockClicked] = useState(false);
+    const [isExpiredStockClicked, setIsExpiredStockClicked] = useState(false);
     // const [isExpiringStockClicked, setIsExpiringStockClicked] =useState(false);
 
     const toggleLowStock = () => {
         setIsExpiredStockClicked(false);
         // setIsExpiringStockClicked(false);
-        if(isLowStockClicked === true){
+        if (isLowStockClicked === true) {
             setIsLowStockClicked(false);
         }
         else {
@@ -57,7 +57,7 @@ const Dashboard = () => {
     const toggleExpiredStock = () => {
         setIsLowStockClicked(false);
         // setIsExpiringStockClicked(false);
-        if(isExpiredStockClicked === true){
+        if (isExpiredStockClicked === true) {
             setIsExpiredStockClicked(false);
         }
         else {
@@ -80,15 +80,15 @@ const Dashboard = () => {
     const lowStocks = products
         .map((product) => {
             if (product.quantity <= 0.05 * Number(product.target)) {
-            return {
-                productName: product.productName,
-                quantity: product.quantity,
-                target: product.target
-            };
+                return {
+                    productName: product.productName,
+                    quantity: product.quantity,
+                    target: product.target
+                };
             }
         })
         .filter((product) => product);
-    
+
     const expiredStocks = products
         .map((product) => {
             if (product.expiryDate <= date) {
@@ -115,7 +115,7 @@ const Dashboard = () => {
     //         }
     //     })
     //     .filter((product) => product);
-    
+
     const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat'];
     const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let currentDate = new Date();
@@ -127,33 +127,39 @@ const Dashboard = () => {
     return (
         <div className="font">
             <div className="container w-full h-36  rounded-md  box-shadow ">
-                <div className=" text-center text-4xl h-24 w-full text-white flex flex-col justify-center" style={{ backgroundColor: '#98c499' }}> <div className="font">Product's Summary</div></div>
+                <div className=" text-center text-4xl h-24 w-full text-white flex flex-col justify-center" style={{ backgroundColor: '#A7BDF8' }}> <div className="font">Product's Summary</div></div>
                 <div className=" text-sm text-center flex flex-col justify-center h-12"><div>As of  {day[currentWeekDay]} {month[currentMonth]} {currentDay}, {currentYear}</div></div>
             </div>
             <div className="flex flex-row flex-wrap mt-4 justify-between">
-                <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" style={{ backgroundColor: '#dff0d8' }}>
+                <div className="hover:cursor-pointer custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" style={{ backgroundColor: '#dff0d8' }}>
                     <div className="font-medium ">Items Type
                     </div>
                     <div>
-                        <h1 className="badge text-6xl" style={{ backgroundColor: '#3c763d' }}>{products.length}</h1>
+                        <h1 className="badge text-6xl" style={{ backgroundColor: '#64B371' }}>{products.length}</h1>
                     </div>
                 </div>
-                <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" onClick={()=>{toggleLowStock()}} style={{ backgroundColor: '#f2dede' }}>
+                <div className="hover:cursor-pointer bg-gray-200 custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" onClick={() => { toggleLowStock() }} >
                     <div className="font-medium" >
                         Low Stock
                     </div>
                     <div >
-                        <h1 className="badge text-6xl" style={{ backgroundColor: '#a94442' }}>{lowStocks.length}</h1>
+                        <h1 className="badge text-6xl bg-gray-400" >{lowStocks.length}</h1>
                     </div>
                 </div>
-                <div className="custom-30 mr-2 flex flex-col text-center justify-center rounded-md h-56 from-inherit" onClick={()=>{toggleExpiredStock()}} style={{ backgroundColor: '#d9edf7' }}>
+                <div className=" hover:cursor-pointer custom-30 mr-2 flex flex-col text-center justify-center rounded-md h-56 from-inherit" onClick={() => { toggleExpiredStock() }} style={{ backgroundColor: '#f2dede' }}>
                     <div className="font-medium">
-                    Expired
-                        </div>
-                        <div>
-                        <h1 className="badge text-6xl" style={{ backgroundColor: '#31708f' }}>{expiredStocks.length}</h1>
-        
-                        </div>
+                        Expired
+                    </div>
+                    <div>
+                        <h1 className="badge text-6xl" style={{ backgroundColor: '#B3696E' }}>{expiredStocks.length}</h1>
+
+                    </div>
+                </div>
+                <div className=" h-9 custom-30 mt-4 p-1 px-2 rounded-lg hover:cursor-pointer flex justify-between" style={{backgroundColor:'#FEE4E6'}}>
+                    <div className="justify-center text-gray-600">
+                        Expiring Soon!!!
+                    </div>
+                    <div className="smallbadge justify-center" style={{ backgroundColor: '#D22B36' }}>2</div>
                 </div>
             </div>
             <div className="py-6">
@@ -168,8 +174,8 @@ const Dashboard = () => {
                         </>}
                         {isExpiredStockClicked && expiredStocks.map((product, idx) => {
                             return (<tr key={idx}>
-                            <td className="p-2">{product.productName}</td>
-                            <td className="p-2">{product.expiryDate.substr(0,10)}</td>
+                                <td className="p-2">{product.productName}</td>
+                                <td className="p-2">{product.expiryDate.substr(0, 10)}</td>
                             </tr>)
                         })}
                     </tbody>
@@ -183,9 +189,9 @@ const Dashboard = () => {
                         </>}
                         {isLowStockClicked && lowStocks.map((product, idx) => {
                             return (<tr key={idx}>
-                            <td className="p-2">{product.productName}</td>
-                            <td className="p-2">{product.quantity}</td>
-                            <td className="p-2">{product.target}</td>
+                                <td className="p-2">{product.productName}</td>
+                                <td className="p-2">{product.quantity}</td>
+                                <td className="p-2">{product.target}</td>
                             </tr>)
                         })}
                     </tbody>
@@ -209,10 +215,10 @@ const Dashboard = () => {
 
             <Chart />
 
-            <div className="flex justify-center pt-10 text-2xl">
-                <button className="px-5 border-4" onClick={handleTotal}>Total Sale</button>
-                <button className="px-5 border-4" onClick={handleEach}>Individual Product</button>
-                {}
+            <div className="flex justify-center mt-3">
+                <button className="px-2 text-base mr-4 py-1 text-white rounded-md" style={{ backgroundColor: '#1877f2' }} onClick={handleTotal}>Total Sale</button>
+                <button className="px-2 text-base text-white rounded-md" style={{ backgroundColor: '#42b72a' }} onClick={handleEach}>Individual Product</button>
+                { }
             </div>
 
             {/* {
