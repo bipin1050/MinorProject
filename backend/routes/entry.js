@@ -34,13 +34,16 @@ router.post('/new',(req,res)=>{
     connection.execute('insert into product (productName,category,manufacturer) values (?,?,?)',[productName,category,manufacturer],(error,result)=>
     {
         if(error) return res.json({error:error});
-        console.log("sucess")
+        console.log("sucesstest")
     })
     connection.execute('select `productId` from product where `productName`=?',[productName],(error,result)=>{
         if(error) return res.json({error:error});
         result=result[result.length-1]
         productId=result.productId
-        connection.execute('insert into productdate values (?,?,?,?,?)',[productId,batchNumber,manufactureDate,entryDate,expiryDate],(error,result)=>{
+        console.log(manufactureDate)
+        console.log(expiryDate)
+        console.log(entryDate)
+        connection.execute('insert into productdate (productId,batchNumber,manufactureDate,entryDate,expiryDate) values (?,?,?,?,?)',[productId,batchNumber,manufactureDate,entryDate,expiryDate],(error,result)=>{
             if(error) return res.json({error:error});
             console.log("sucess")
         })

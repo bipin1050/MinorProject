@@ -2,64 +2,97 @@ import axios from 'axios';
 import { useState, useEffect } from "react"
 import CanvasJSReact from '../canvasjs.react.js';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var dataPoints1 = [];
-var dataPoints2 = [];
 
-const Chart = () => {
-    // const [salesDetail, setSalesDetail] = useState([])
+
+const Chart = ({option}) => {
+    const [dataPoints, setDataPoints] = useState();
+    const [dataPoints1 , setDataPoints1] = useState();
+    const [dataPoints2 , setDataPoints2] = useState();
+    const tempData = [];
+    const [isData, setIsData] = useState(false);
+
+    console.log(option)
+    // console.log(selectedProduct)
+    const selectedProduct = "Laptop"
+
 
     useEffect(()=>{
         axios.get("http://localhost:5000/dashboard")
         .then((res)=>{
             // setSalesDetail(res.data)
             for (var i = 0; i < res.data.length; i++) {
-            dataPoints1.push({
-                x: new Date(res.data[i].salesDate),
-                y: res.data[i].price
-            });
-        }
+                tempData.push({
+                    x: new Date(res.data[i].salesDate.substr(0,10)),
+                    y: Number(res.data[i].price)
+                });
+            }
+            setIsData(true)
+            setDataPoints1(tempData)
         })
-    }, [])
+    },[])
     
-    console.log(dataPoints1)
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/dashboard/${selectedProduct}`)
+        .then((res)=>{
+            // setSalesDetail(res.data)
+            for (var i = 0; i < res.data.length; i++) {
+                tempData.push({
+                    x: new Date(res.data[i].salesDate.substr(0,10)),
+                    y: Number(res.data[i].price)
+                });
+            }
+            setIsData(true)
+            setDataPoints2(tempData)
+        })
+    },[])
+    
+    if(option==="option1"){
+        setDataPoints(dataPoints1)
+    }
+    else if(option==="option2"){
+        setDataPoints(dataPoints2)
+    }
+
+
+    // axios.get('https://canvasjs.com/data/gallery/react/nifty-stock-price.json')
+    // .then((data) => {
+    //     // console.log(data)
+    //     for (var i = 0; i < data.data.length; i++) {
+    //         dataPoints1.push({
+    //             x: new Date(data.data[i].x),
+    //             y: data.data[i].y
+    //         });
+    //     }
+    // });
+
     // console.log(option)
-    const option1 = {
+    const options = {
         animationEnabled: true,
         title:{
             text: "Monthly Sales - 2021"
         },
         axisX: {
-            valueFormatString: "MMM"
+            valueFormatString: "D MMM"
         },
         axisY: {
             title: "Sales (in Rs)",
-            prefix: "$"
+            prefix: "Rs "
         },
         data: [{
-            yValueFormatString: "$#,###",
-            xValueFormatString: "MMMM",
+            yValueFormatString: "Rs #,###",
+            xValueFormatString: "MMM DD",
             type: "spline",
-            dataPoints: dataPoints1
+            dataPoints: dataPoints
         }]
     }
-    // axios.get('https://canvasjs.com/data/gallery/react/nifty-stock-price.json')
-    // .then((data) => {
-    //     // console.log(data)
-        // for (var i = 0; i < data.data.length; i++) {
-        //     dataPoints1.push({
-        //         x: new Date(data.data[i].x),
-        //         y: data.data[i].y
-        //     });
-        // }
-    // });
-
+    
     
     
     return (
     <div>
-        <CanvasJSChart options = {option1}
+        {isData && <CanvasJSChart options = {options}
             /* onRef={ref => this.chart = ref} */
-        />
+        />}
     </div>
     );
 }

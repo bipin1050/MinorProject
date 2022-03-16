@@ -19,7 +19,7 @@ router.post('/',(req,res)=>{
             res.status(200).json({accessToken:accessToken})
         }
         else{
-            res.send({message:"Wrong username/password"})
+            res.status(400).send({message:"Wrong username/password"})
         }
     })
 })

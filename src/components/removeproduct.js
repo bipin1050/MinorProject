@@ -11,7 +11,7 @@ const Removeproduct = () => {
     .then((res)=>{
       setProducts(res.data)
     })
-  }, [products])
+  }, [])
 
   const [productName, setProductName] = useState("");
   const [batchNo, setBatchNo] = useState("");

@@ -27,7 +27,8 @@ const Dashboard = () => {
     }
 
     const [option, setOption] = useState('option1');
-    const [isTotalActice, setIsTotalActive] = useState(true);
+    const [selectedProduct, setSelectedProduct] =useState();
+    const [isTotalActive, setIsTotalActive] = useState(true);
 
     const handleTotal = (e) => {
         setIsTotalActive(true);
@@ -35,9 +36,11 @@ const Dashboard = () => {
     }
     const handleEach = (e) => {
         setIsTotalActive(false);
+    }
+    const handleSelectedProduct = (e) => {
+        setSelectedProduct(e.target.value)
         setOption("option2");
     }
-
 
     const [isLowStockClicked, setIsLowStockClicked] =useState(false);
     const [isExpiredStockClicked, setIsExpiredStockClicked] =useState(false);
@@ -124,6 +127,7 @@ const Dashboard = () => {
     let currentDay = currentDate.getDate();
     let currentWeekDay = currentDate.getDay();
 
+
     return (
         <div className="font">
             <div className="container w-full h-36  rounded-md  box-shadow ">
@@ -207,38 +211,24 @@ const Dashboard = () => {
                 </tbody>
             </div> */}
 
-            <Chart />
+            <Chart values = {option} />
 
             <div className="flex justify-center pt-10 text-2xl">
                 <button className="px-5 border-4" onClick={handleTotal}>Total Sale</button>
-                <button className="px-5 border-4" onClick={handleEach}>Individual Product</button>
-                {}
+                <button className="px-5 border-4" onClick={handleEach}>Single Sale</button>
+                {!isTotalActive && 
+                <select onChange={handleSelectedProduct} id = "defValue" defaultValue={"DEFAULT"} name="productName" className="w-30 h-9 rounded-lg bg-zinc-100 border-black justify-start">
+                    <option disabled value={"DEFAULT"}>--SELECT PRODUCT--</option>
+                    {products.map((product, index) => {
+                        return (
+                            <option key={index} value={product.productName}>
+                                {product.productName}
+                            </option>
+                        )
+                    })}
+                </select>}
             </div>
 
-            {/* {
-                !isTotalActice 
-                && 
-                <div> {
-                    <select id="defValue"
-                        // onChange={handleProduct}
-                        defaultValue="DEFAULT"
-                        name="productName"
-                        className="h-9 w-full rounded-lg bg-zinc-100 border-black justify-start"
-                        >{
-                        <option disabled value={"DEFAULT"}>
-                            --SELECT PRODUCT--
-                        </option>
-                        {products.map((product, index) => {
-                            return (
-                            <option key={index} value={product.pid}>
-                                {" "}
-                                {product.productName} ({product.price}){" "}
-                            </option>
-                            );
-                        })}}
-                        </select>
-                }</div>
-            } */}
         </div>
     );
 }

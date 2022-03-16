@@ -11,7 +11,7 @@ const Addproduct = () => {
     .then((res)=>{
       setProducts(res.data)
     })
-  }, [products])    
+  }, [])    
 
     const [isNewSelected, setIsNewSelected] = useState(false);
     const [isExistingSelected, setIsExistingSelected] = useState(false);
@@ -20,9 +20,9 @@ const Addproduct = () => {
     const [category, setCategory] = useState("");
     const [manufacturer, setManufacturer] = useState("");
     const [batchNo, setBatchNo] = useState("");
-    const [manufactureDate, setManufactureDate] = useState("");
-    const [entryDate, setEntryDate] = useState("");
-    const [expiryDate, setExpiryDate] = useState("");
+    const [manufactureDate, setManufactureDate] = useState(null);
+    const [entryDate, setEntryDate] = useState(null);
+    const [expiryDate, setExpiryDate] = useState(null);
     const [unitPrice, setUnitPrice] = useState("");
     const [quantity, setQuantity] = useState("");
     const [target, setTarget] = useState("");
@@ -83,9 +83,9 @@ const Addproduct = () => {
         setCategory("");
         setManufacturer("");
         setBatchNo("");
-        setManufactureDate("");
-        setEntryDate("");
-        setExpiryDate("");
+        setManufactureDate(null);
+        setEntryDate(null);
+        setExpiryDate(null);
         setQuantity("");
         setLocation("");
         setUnitPrice("");

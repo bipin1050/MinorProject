@@ -6,11 +6,7 @@ import swal from 'sweetalert';
 
 const Signup = () => {
 
-    const handleSubmit = (e) => {
-
-    }
-    const navigate = useNavigate();
-    
+    const navigate = useNavigate(); 
 
     const checkDetail = (e) =>{
         e.preventDefault();
