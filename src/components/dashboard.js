@@ -42,14 +42,9 @@ const Dashboard = () => {
         setOption("option2");
     }
 
-<<<<<<< HEAD
-    const [isLowStockClicked, setIsLowStockClicked] =useState(false);
-    const [isExpiredStockClicked, setIsExpiredStockClicked] =useState(false);
-=======
 
     const [isLowStockClicked, setIsLowStockClicked] = useState(false);
     const [isExpiredStockClicked, setIsExpiredStockClicked] = useState(false);
->>>>>>> 33cebe9ab3c567c2a2e9b6f66a020b6f3737d9d4
     // const [isExpiringStockClicked, setIsExpiringStockClicked] =useState(false);
 
     const toggleLowStock = () => {
