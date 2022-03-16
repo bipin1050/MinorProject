@@ -210,7 +210,7 @@ const Addproduct = () => {
                                     <br />
                                 </div>
                                 <div className="text-center">
-                                    <button onClick={handleSubmitAddNewProduct} className=" px-5  text-white py-1  rounded-md bg-blue-400 hover:bg-blue-500 active:to-blue-600 text-base focus:shadow-md">
+                                    <button onClick={handleSubmitAddNewProduct} className=" button-blue">
                                        <i className = "fa fa-plus mr-1"></i> Add
                                     </button>
                                 </div>
@@ -241,7 +241,7 @@ const Addproduct = () => {
                                 </div>
 
                                 <div className="text-center">
-                                    <button onClick={handleSubmitAddExistingProduct} className=" px-5  text-white py-1  rounded-md bg-blue-400 hover:bg-blue-500 active:to-blue-600 text-base">
+                                    <button onClick={handleSubmitAddExistingProduct} className=" button-blue">
                                       <i className="fa fa-plus ml-1"></i>  Add
                                     </button>
                                 </div>

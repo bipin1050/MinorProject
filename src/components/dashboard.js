@@ -27,8 +27,7 @@ const Dashboard = () => {
     }
 
     const [option, setOption] = useState('option1');
-    const [selectedProduct, setSelectedProduct] =useState();
-    const [isTotalActive, setIsTotalActive] = useState(true);
+    const [isTotalActice, setIsTotalActive] = useState(true);
 
     const handleTotal = (e) => {
         setIsTotalActive(true);
@@ -36,9 +35,6 @@ const Dashboard = () => {
     }
     const handleEach = (e) => {
         setIsTotalActive(false);
-    }
-    const handleSelectedProduct = (e) => {
-        setSelectedProduct(e.target.value)
         setOption("option2");
     }
 
@@ -128,7 +124,6 @@ const Dashboard = () => {
     let currentDay = currentDate.getDate();
     let currentWeekDay = currentDate.getDay();
 
-
     return (
         <div className="font">
             <div className="container w-full h-36  rounded-md  box-shadow ">
@@ -161,7 +156,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className=" h-9 custom-30 mt-4 p-1 px-2 rounded-lg hover:cursor-pointer flex justify-between" style={{backgroundColor:'#FEE4E6'}}>
-                    <div className="justify-center text-gray-600">
+                    <div className="justify-center text-gray-500">
                         Expiring Soon!!!
                     </div>
                     <div className="smallbadge justify-center" style={{ backgroundColor: '#D22B36' }}>2</div>
@@ -218,24 +213,38 @@ const Dashboard = () => {
                 </tbody>
             </div> */}
 
-            <Chart values = {option} />
+            <Chart />
 
             <div className="flex justify-center mt-3">
-                <button className="px-2 text-base mr-4 py-1 text-white rounded-md" style={{ backgroundColor: '#1877f2' }} onClick={handleTotal}>Total Sale</button>
-                <button className="px-2 text-base text-white rounded-md" style={{ backgroundColor: '#42b72a' }} onClick={handleEach}>Individual Product</button>
-                {!isTotalActive && 
-                <select onChange={handleSelectedProduct} id = "defValue" defaultValue={"DEFAULT"} name="productName" className="w-30 h-9 rounded-lg bg-zinc-100 border-black justify-start">
-                    <option disabled value={"DEFAULT"}>--SELECT PRODUCT--</option>
-                    {products.map((product, index) => {
-                        return (
-                            <option key={index} value={product.productName}>
-                                {product.productName}
-                            </option>
-                        )
-                    })}
-                </select>}
+                <button className="button-blue mr-4" onClick={handleTotal}>Total Sale</button>
+                <button className="button-green" onClick={handleEach}>Individual Product</button>
+                { }
             </div>
 
+            {/* {
+                !isTotalActice 
+                && 
+                <div> {
+                    <select id="defValue"
+                        // onChange={handleProduct}
+                        defaultValue="DEFAULT"
+                        name="productName"
+                        className="h-9 w-full rounded-lg bg-zinc-100 border-black justify-start"
+                        >{
+                        <option disabled value={"DEFAULT"}>
+                            --SELECT PRODUCT--
+                        </option>
+                        {products.map((product, index) => {
+                            return (
+                            <option key={index} value={product.pid}>
+                                {" "}
+                                {product.productName} ({product.price}){" "}
+                            </option>
+                            );
+                        })}}
+                        </select>
+                }</div>
+            } */}
         </div>
     );
 }
