@@ -21,7 +21,7 @@ export const AuthProvider = ({children}) => {
             setIsLoading(false)
         })
         .catch((err)=>{
-        
+            setIsLoading(false)
         })
     },[])
 
