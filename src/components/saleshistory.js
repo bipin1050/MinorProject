@@ -11,7 +11,7 @@ const Saleshistory = () => {
         })
     },[])
 
-    console.log(soldProducts)
+    // console.log(soldProducts)
 
     return ( 
         <div>

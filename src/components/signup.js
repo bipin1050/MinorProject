@@ -73,7 +73,7 @@ const Signup = () => {
                     <div>
                         <form onSubmit={checkDetail}>
                             <div className='flex flex-col items-center m-4'>
-                                <div className='text-3xl text-gray-500 justify-center'>Sign Up</div><hr />
+                                <div className='text-3xl text-gray-500 justify-center'>Create User</div><hr />
                                 <div className='text-gray-500 flex flex-col  m-4'>
                                     <label className=' '>Create Username</label>
                                     <input autoComplete="off" type="text" name="username" placeholder='Minimum 5 character' required className='rounded-md w-56 px-2 py-1  focus:outline-none focus:border-blue-400 border-2 mb-4 focus:shadow-lg' />

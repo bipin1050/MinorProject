@@ -168,7 +168,7 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className="py-6">
-                <div>
+                <table>
                     <tbody>
                         {/* {console.log(products)}
                         {console.log(lowStocks)}
@@ -184,8 +184,8 @@ const Dashboard = () => {
                             </tr>)
                         })}
                     </tbody>
-                </div>
-                <div>
+                </table>
+                <table>
                     <tbody>
                         {isLowStockClicked && <>
                             <th className="p-2">Product Name</th>
@@ -200,7 +200,7 @@ const Dashboard = () => {
                             </tr>)
                         })}
                     </tbody>
-                </div>
+                </table>
             </div>
             {/* <div className=" my-5 flex flex-col text-center justify-center rounded-md h-20 from-inherit" onClick={()=>{toggleExpiringStock()}} style={{ backgroundColor: '#d9edf7' }}>
                     <div className="font-medium">

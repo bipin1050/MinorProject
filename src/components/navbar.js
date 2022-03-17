@@ -22,6 +22,7 @@ import SellIcon from "@mui/icons-material/Sell";
 import { Navigate, Routes, useLocation, useNavigate } from "react-router";
 import { Container, ListItemButton } from "@mui/material";
 import HistoryIcon from '@mui/icons-material/History';
+import { useAuth } from "../Authentication/auth";
 
 const drawerWidth = 240;
 
@@ -99,6 +100,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function DashboardNav({ children }) {
+  
+  const auth = useAuth();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -112,6 +115,11 @@ export default function DashboardNav({ children }) {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  const handleLogout = () => {
+    auth.logout()
+    navigate("/");
+  }
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -131,6 +139,9 @@ export default function DashboardNav({ children }) {
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             <span className="font"> Inventory Manager </span>
+          </Typography>
+          <Typography>
+            <button onClick={handleLogout}>Logout</button>
           </Typography>
         </Toolbar>
       </AppBar>

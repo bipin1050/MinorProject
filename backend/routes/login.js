@@ -3,6 +3,7 @@ const router=express.Router()
 const jwt=require('jsonwebtoken')
 require('dotenv').config()
 const connection=require('../db/db')
+const authenticate = require('../middleware/authenticate')
 
 router.post('/',(req,res)=>{
     const {username,password}=req.body;
@@ -48,5 +49,8 @@ router.post("/checkname",(req,res)=>{
         }
 
     })
+})
+router.post("/checktoken",authenticate, (req,res)=>{
+    res.status(200).send({message: "user verified"})
 })
 module.exports=router

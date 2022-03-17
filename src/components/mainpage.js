@@ -9,6 +9,7 @@ import Removeproduct from "./removeproduct";
 import Searchproduct from "./searchproduct";
 import InvoiceWrapper from './InvoiceWrapper'
 import Saleshistory from "./saleshistory";
+import { useAuth } from "../Authentication/auth";
 // import Invoice from "./invoice";
 // import Sellproduct from "./sellproduct";
 
@@ -22,6 +23,7 @@ const Mainpage = () => {
       setProducts(res.data)
     })
   }, [])
+
 
   return (
     <DashboardNav>
