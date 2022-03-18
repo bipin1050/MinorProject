@@ -13,16 +13,49 @@ router.get('/',(req,res)=>{
     })
 })
 
+// router.post('/existing',(req,res)=>{
+//     const {productName,batchNumber,entryDate,quantity,}=req.body;
+//     let productId;
+//     connection.execute('select `productId` from product where `productName`=?',[productName],(error,result)=>{
+//         if(error) return res.json({error:error});
+//         [{productId}]=result
+//         connection.execute('update  productnumber set quantity=quantity+?  where productId=? and batchNumber=?',[quantity,productId,batchNumber],(error,result)=>{
+//             if(error) return res.json({error:error});
+//             console.log("sucess")
+//         })
+//     })
+// })
+
 router.post('/existing',(req,res)=>{
-    const {productName,batchNumber,entryDate,quantity,}=req.body;
+    const {productName,batchNumber,price,quantity,manufactureDate,entryDate,expiryDate}=req.body;
     let productId;
-    connection.execute('select `productId` from product where `productName`=?',[productName],(error,result)=>{
+    connection.execute('select productId from product where productName=?',[productName],(error,result)=>{
         if(error) return res.json({error:error});
-        [{productId}]=result
-        connection.execute('update  productnumber set quantity=quantity+?  where productId=? and batchNumber=?',[quantity,productId,batchNumber],(error,result)=>{
-            if(error) return res.json({error:error});
-            console.log("sucess")
-        })
+        result=result[result.length-1]
+        productId=result.productId
+        console.log(productId)
+        if(expiryDate===undefined)
+        {
+            connection.execute('select price from productprice where productId=?',[productId],(error,result)=>{
+                if (error) return res.json({error:error})
+                let [pricee]=result
+                pricee=pricee.price
+                if(pricee===price)
+                {
+                    connection.execute('update  productnumber set quantity=quantity+?  where productId=? and batchNumber=?',[quantity,productId,batchNumber],(error,result)=>{
+                        if(error) return res.json({error:error});
+                        console.log("done")
+                    })
+                }
+            })
+        }
+        else
+        {
+            connection.execute('update  productnumber set quantity=quantity+?  where productId=? and batchNumber=?',[quantity,productId,batchNumber],(error,result)=>{
+                if(error) return res.json({error:error});
+                console.log("done")
+            })
+        }
     })
 })
 

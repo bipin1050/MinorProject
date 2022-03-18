@@ -19,6 +19,7 @@ const Removeproduct = () => {
 
   const handleClearInput = () => {
     document.getElementById("defValue").value = "DEFAULT";
+    document.getElementById("batchdef").value = "default";
     setProductName("");
     setBatchNo("");
     setQuantity("");
@@ -32,31 +33,35 @@ const Removeproduct = () => {
 
 
   const handleSubmitRemoveProduct = (event) => {
-    event.preventDefault();
-    let conform = window.confirm("Are you sure want to delete?");
-    console.log(conform)
-    let obj = {};
-    if(conform){
-    //const data = new FormData(event.currentTarget);
-    //this is to sent to backend
-     let obj = {
-      productName: productName,
-      batchNumber: batchNo,
-      quantity: quantity,
-    };
-    // console.log(obj)
-    const a = axios
-    .delete("http://localhost:5000/entry/remove", { data: obj })
-    .then((res) => {
-      handleClearInput();
-      console.log(res);
-      //toast.error(res.response.data.message);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    console.log(a);
-  }
+    if(productName.length > 0 &&
+          quantity > 0 &&
+          batchNo.length > 0){
+      event.preventDefault();
+      let conform = window.confirm("Are you sure want to delete?");
+      console.log(conform)
+      let obj = {};
+      if(conform){
+        //const data = new FormData(event.currentTarget);
+        //this is to sent to backend
+        let obj = {
+          productName: productName,
+          batchNumber: batchNo,
+          quantity: quantity,
+        };
+        // console.log(obj)
+        const a = axios
+        .delete("http://localhost:5000/entry/remove", { data: obj })
+        .then((res) => {
+          handleClearInput();
+          console.log(res);
+          //toast.error(res.response.data.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+        console.log(a);
+      }
+    }
   };
 
   return (
@@ -83,14 +88,26 @@ const Removeproduct = () => {
             );
           })}
         </select>
-        <input
-          type="text"
+
+        <select
+          id="batchdef"
+          defaultValue={"default"}
           onChange={(e) => setBatchNo(e.target.value)}
-          value={batchNo}
-          placeholder="Batch Number"
-          className="  border-gray-300 text-sm p-1 border-2 w-44 focus:outline-none mb-2 focus:border-blue-500 rounded-md text-gray-500"
-        />
-        <br />
+          className="  border-blue-300 text-sm p-2 border-2 w-44 focus:outline-none mb-2 focus:border-blue-500 rounded-md text-gray-500"
+        >
+          <option value="default" disabled >
+            Batch No.
+          </option>
+          {products.map((product, index) => {
+            if(product.productName === productName){
+              return (
+                <option key={index} value={product.batchNumber} className ="text-sm text-gray-400">
+                  {product.batchNumber}
+                </option>
+              );
+            }
+          })}
+        </select>
 
         <input
           type="text"

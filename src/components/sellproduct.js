@@ -31,7 +31,6 @@ const Sellproduct = () => {
 
   const [customerName, setCustomerName] = useState("");
   const [company, setCompany] = useState("");
-  // const [buyerContact, setBuyerContact] = useState("");
   const [address, setAddress] = useState("");
 
   const customer = {
@@ -74,6 +73,7 @@ const Sellproduct = () => {
       batchNumber: ""
     });
     document.getElementById("defValue").value = "DEFAULT";
+    document.getElementById("batchdef").value = "default";
   };
   
   const handleSellProduct = (event) => {
@@ -171,23 +171,33 @@ const Sellproduct = () => {
           {products.map((product, index) => {
             return (
               <option key={index} value={product.pid}>
-                {" "}
-                {product.productName} ({product.price}){" "}
+                {product.productName} ({product.price})
               </option>
             );
           })}
         </select>
         </div>
-        <input
-          type="text"
-          required
-          placeholder="Batch No"
-          name="batchNumber"
-          value={oneItem.batchNumber}
+
+        <select
+          id="batchdef"
+          defaultValue={"default"}
           onChange={handleProduct}
-          className="  border-gray-300 text-sm p-1  border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
-        />
-        <br />
+          name="batchNumber"
+          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9 w-44"
+        >
+          <option value="default" disabled >
+            Batch No.
+          </option>
+          {products.map((product, index) => {
+            if(product.productId === Number(oneItem.productName)){
+              return (
+                <option key={index} value={product.batchNumber} className ="text-sm text-gray-400">
+                  {product.batchNumber}
+                </option>
+              );
+            }
+          })}
+        </select>
         
         <input
           type="text"
