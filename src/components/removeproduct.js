@@ -30,9 +30,14 @@ const Removeproduct = () => {
     })
   };
 
-
+console.log(batchNo)
   const handleSubmitRemoveProduct = (event) => {
     event.preventDefault();
+   if(productName ==''|| batchNo == ''||quantity==''){
+     alert('Select Product First')
+     return;
+   }
+
     let conform = window.confirm("Are you sure want to delete?");
     console.log(conform)
     let obj = {};
@@ -85,6 +90,7 @@ const Removeproduct = () => {
         </select>
         <input
           type="text"
+          id="batchNo"
           onChange={(e) => setBatchNo(e.target.value)}
           value={batchNo}
           placeholder="Batch Number"
@@ -94,6 +100,7 @@ const Removeproduct = () => {
 
         <input
           type="text"
+          id="quantity"
           onChange={(e) => setQuantity(e.target.value)}
           value={quantity}
           placeholder="Quantity"

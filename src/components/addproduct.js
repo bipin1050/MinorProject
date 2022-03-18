@@ -112,6 +112,10 @@ const Addproduct = () => {
 
     const handleSubmitAddNewProduct = (event) => {
         event.preventDefault();
+        if(productName==''||manufacturer==''||quantity==''||batchNo==''||target==''||unitPrice==''||category==''){
+            alert("Please Select All Values")
+            return;
+        }
         //const data = new FormData(event.currentTarget);
         //this is to sent to backend
         axios.post("http://localhost:5000/entry/new", {
@@ -136,6 +140,10 @@ const Addproduct = () => {
 
     const handleSubmitAddExistingProduct = (event) => {
         event.preventDefault();
+        if(productName==''||manufacturer==''||quantity==''||batchNo==''||target==''||unitPrice==''||category==''){
+            alert("Please Select All Values")
+            return;
+        }
         //const data = new FormData(event.currentTarget);
         //this is to sent to backend
         const obj = {

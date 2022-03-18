@@ -19,6 +19,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
 import SellIcon from "@mui/icons-material/Sell";
+import HomeIcon from "@mui/icons-material/Home";
 import { Navigate, Routes, useLocation, useNavigate } from "react-router";
 import { Container, ListItemButton } from "@mui/material";
 import HistoryIcon from '@mui/icons-material/History';
@@ -141,7 +142,7 @@ export default function DashboardNav({ children }) {
             <span className="font"> Inventory Manager </span>
           </Typography>
           <Typography>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout} className = "w-20 fixed right-2 top-5 hover:text-gray-200 active:text-white">Logout</button>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -164,6 +165,8 @@ export default function DashboardNav({ children }) {
             }}
           >
             <ListItemIcon>
+              {/* <i className="fa fa-home text-2xl"></i> */}
+              {/* <HomeIcon /> */}
               <DashboardSharp />
             </ListItemIcon>
             <ListItemText primary={"Dashboard"} className ="text-gray-500" />
