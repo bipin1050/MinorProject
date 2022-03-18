@@ -31,37 +31,38 @@ const Removeproduct = () => {
     })
   };
 
-
+console.log(batchNo)
   const handleSubmitRemoveProduct = (event) => {
-    if(productName.length > 0 &&
-          quantity > 0 &&
-          batchNo.length > 0){
-      event.preventDefault();
-      let conform = window.confirm("Are you sure want to delete?");
-      console.log(conform)
-      let obj = {};
-      if(conform){
-        //const data = new FormData(event.currentTarget);
-        //this is to sent to backend
-        let obj = {
-          productName: productName,
-          batchNumber: batchNo,
-          quantity: quantity,
-        };
-        // console.log(obj)
-        const a = axios
-        .delete("http://localhost:5000/entry/remove", { data: obj })
-        .then((res) => {
-          handleClearInput();
-          console.log(res);
-          //toast.error(res.response.data.message);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-        console.log(a);
-      }
-    }
+    event.preventDefault();
+   if(productName ==''|| batchNo == ''||quantity==''){
+     alert('Select Product First')
+     return;
+   }
+
+    let conform = window.confirm("Are you sure want to delete?");
+    console.log(conform)
+    let obj = {};
+    if(conform){
+    //const data = new FormData(event.currentTarget);
+    //this is to sent to backend
+     let obj = {
+      productName: productName,
+      batchNumber: batchNo,
+      quantity: quantity,
+    };
+    // console.log(obj)
+    const a = axios
+    .delete("http://localhost:5000/entry/remove", { data: obj })
+    .then((res) => {
+      handleClearInput();
+      console.log(res);
+      //toast.error(res.response.data.message);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    console.log(a);
+  }
   };
 
   return (
@@ -111,6 +112,7 @@ const Removeproduct = () => {
 
         <input
           type="text"
+          id="quantity"
           onChange={(e) => setQuantity(e.target.value)}
           value={quantity}
           placeholder="Quantity"

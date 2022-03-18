@@ -7,14 +7,15 @@ const authenticate = require('../middleware/authenticate')
 
 router.post('/',(req,res)=>{
     const {username,password}=req.body;
-    connection.execute('select * from employee where `employee`=? AND `password`=? ',[username,password],
+    connection.execute('select * from employee where employee=? AND password=? ',[username,password],
     function(err,result,field){
         if(err){
             res.send({err:err})
         }
         if(result.length>0){
             console.log(result)
-            console.log('login sucess')
+            console.log('login sucess');
+            console.log(process.env.ACCESS_TOKEN_SECRET);
             const user={name:username}
             const accessToken=jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
             res.status(200).json({accessToken:accessToken})

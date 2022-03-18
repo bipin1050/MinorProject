@@ -135,6 +135,15 @@ const Dashboard = () => {
                 <div className=" text-center text-4xl h-24 w-full text-white flex flex-col justify-center" style={{ backgroundColor: '#A7BDF8' }}> <div className="font">Product's Summary</div></div>
                 <div className=" text-sm text-center flex flex-col justify-center h-12"><div>As of  {day[currentWeekDay]} {month[currentMonth]} {currentDay}, {currentYear}</div></div>
             </div>
+            <div className="flex flex-row-reverse">
+
+            <div className=" h-9 custom-30 mt-4 p-1 px-2 rounded-lg hover:cursor-pointer flex  justify-between" style={{backgroundColor:'#FEE4E6'}}>
+                    <div className="justify-center text-gray-600">
+                        Expiring Soon!!!
+                    </div>
+                    <div className="smallbadge justify-center" style={{ backgroundColor: '#D22B36' }}>2</div>
+            </div>
+                </div>
             <div className="flex flex-row flex-wrap mt-4 justify-between">
                 <div className="hover:cursor-pointer custom-30 mr-2 flex flex-col text-center justify-center rounded-md from-inherit" style={{ backgroundColor: '#dff0d8' }}>
                     <div className="font-medium ">Items Type
@@ -160,12 +169,7 @@ const Dashboard = () => {
 
                     </div>
                 </div>
-                <div className=" h-9 custom-30 mt-4 p-1 px-2 rounded-lg hover:cursor-pointer flex justify-between" style={{backgroundColor:'#FEE4E6'}}>
-                    <div className="justify-center text-gray-600">
-                        Expiring Soon!!!
-                    </div>
-                    <div className="smallbadge justify-center" style={{ backgroundColor: '#D22B36' }}>2</div>
-                </div>
+               
             </div>
             <div className="py-6">
                 <table>

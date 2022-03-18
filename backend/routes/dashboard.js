@@ -7,7 +7,7 @@ router.get("/",(req,res)=>{
     connection.execute("select sum(price*quantity) as price,salesDate from salesdetail where datediff(curdate(),salesDate)<=30 group by salesDate",(err,result)=>{
         if(err) res.json({err:err})
         console.log(result)
-        res.json(result)
+        res.json(result);
     })
 })
 router.post("/product",(req,res)=>{
