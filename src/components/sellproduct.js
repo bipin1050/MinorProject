@@ -20,7 +20,7 @@ const Sellproduct = () => {
 
   const isItemAdded = totalItems.length > 0;
 
-  let billno;
+  let billnumber;
 
   var today = new Date(),
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -84,7 +84,7 @@ const Sellproduct = () => {
       alert('Fill customer detail first')
       return;
     }
-    let confirm = window.confirm("Are you sure want to delete?");
+    let confirm = window.confirm("Are you sure want to sell selected products?");
     if (!confirm) { return }
     //const data = new FormData(event.currentTarget);
     //this is to sent to backend
@@ -93,7 +93,6 @@ const Sellproduct = () => {
     console.log(totalItems)
     const a = axios.post("http://localhost:5000/checkout", { customer, salesdata })
       .then((res) => {
-        console.log(res);
         //toast.error(res.response.data.message);
         swal({
           title: "ITEM SOLD",
@@ -101,9 +100,10 @@ const Sellproduct = () => {
           icon: "success",
           buttons: "Get Invoice"
         })
-        // billno = res.body.billno;
+        console.log(res)
+        billnumber = res.data.billnumber;
         navigate("invoice", {
-          state: { totalItems, customer }
+          state: { totalItems, customer, billnumber}
         })
       })
       .catch((err) => {

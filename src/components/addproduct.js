@@ -146,7 +146,19 @@ const Addproduct = () => {
         }
         //const data = new FormData(event.currentTarget);
         //this is to sent to backend
-        const obj = {
+        // const obj = {
+        //     productName: productName,
+        //     batchNumber: batchNo,
+        //     manufactureDate: manufactureDate,
+        //     entryDate: entryDate,
+        //     expiryDate: expiryDate,
+        //     quantity: quantity,
+        //     price: unitPrice,
+        // }
+        // console.log("1")
+        // console.log(obj)
+        // const a = 
+        axios.post("http://localhost:5000/entry/existing", {
             productName: productName,
             batchNumber: batchNo,
             manufactureDate: manufactureDate,
@@ -154,10 +166,7 @@ const Addproduct = () => {
             expiryDate: expiryDate,
             quantity: quantity,
             price: unitPrice,
-        }
-        // console.log("1")
-        // console.log(obj)
-        const a = axios.post("http://localhost:5000/entry/existing", { ...obj })
+        })
             .then((res) => {
                 handleClearInput();
                 console.log(res);
@@ -165,7 +174,7 @@ const Addproduct = () => {
             }).catch((err) => {
                 console.log(err)
             })
-        console.log(a)
+        // console.log(a)
     }
 
     return (

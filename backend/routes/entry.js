@@ -42,9 +42,9 @@ router.post('/existing',(req,res)=>{
                 pricee=pricee.price
                 if(pricee===price)
                 {
-                    connection.execute('update  productnumber set quantity=quantity+?  where productId=? and batchNumber=?',[quantity,productId,batchNumber],(error,result)=>{
+                    connection.execute('update  productnumber set quantity=quantity+?  where productId=?',[quantity,productId],(error,result)=>{
                         if(error) return res.json({error:error});
-                        console.log("done")
+                        res.status(200).send({message:"success"});
                     })
                 }
             })
@@ -53,7 +53,7 @@ router.post('/existing',(req,res)=>{
         {
             connection.execute('update  productnumber set quantity=quantity+?  where productId=? and batchNumber=?',[quantity,productId,batchNumber],(error,result)=>{
                 if(error) return res.json({error:error});
-                console.log("done")
+                res.status(200).send({message:"success"});
             })
         }
     })

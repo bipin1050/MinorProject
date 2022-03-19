@@ -53,7 +53,7 @@ router.post("/",(req,res)=>{
                             count++;
                             console.log(count)
                             if(count === salesdata.length)
-                                res.json({message:"sucess"})
+                                res.json({billnumber:billnumber})
                         }
                         else
                         {
@@ -64,7 +64,8 @@ router.post("/",(req,res)=>{
                                     connection.execute(' delete from productprice WHERE batchNumber=? and productId=?',[batchNumber,productId],(error,result)=>{
                                         if (error) return res.json({error:error})
                                         else{
-                                            return res.send({message:"deleted"})
+                                            if(count === salesdata.length)
+                                                res.json({billnumber:billnumber})
                                         }
                                     })
                                 })
