@@ -6,12 +6,12 @@ import swal from "sweetalert";
 const Sellproduct = () => {
 
   const [products, setProducts] = useState([]);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     axios.get("http://localhost:5000/checkout")
-    .then((res)=>{
-      setProducts(res.data)
-    })
+      .then((res) => {
+        setProducts(res.data)
+      })
   }, []);
 
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Sellproduct = () => {
   const isItemAdded = totalItems.length > 0;
 
   var today = new Date(),
-  date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
   const [oneItem, setOneItem] = useState({
     productName: "",
@@ -75,33 +75,33 @@ const Sellproduct = () => {
     document.getElementById("defValue").value = "DEFAULT";
     document.getElementById("batchdef").value = "default";
   };
-  
+
   const handleSellProduct = (event) => {
     event.preventDefault();
-    if(customerName ==''|| address==''){
+    if (customerName == '' || address == '') {
       alert('Fill customer detail first')
       return;
     }
     let confirm = window.confirm("Are you sure want to delete?");
-    if(!confirm){return}
+    if (!confirm) { return }
     //const data = new FormData(event.currentTarget);
     //this is to sent to backend
     // console.log(obj)
     const salesdata = totalItems;
     console.log(totalItems)
-    const a = axios.post("http://localhost:5000/checkout", {customer, salesdata})
+    const a = axios.post("http://localhost:5000/checkout", { customer, salesdata })
       .then((res) => {
         console.log(res);
         //toast.error(res.response.data.message);
         swal({
           title: "ITEM SOLD",
           body: "",
-          icon : "success",
-          buttons :"Get Invoice"
+          icon: "success",
+          buttons: "Get Invoice"
         })
         navigate("invoice", {
-              state: {totalItems, customer}
-            })
+          state: { totalItems, customer }
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -114,73 +114,73 @@ const Sellproduct = () => {
       <div className="text-center text-2xl text-gray-500 mb-4"> Sell Products</div> <hr />
       <div className="flex w-full justify-center mt-4">
         <div>
-        <input
-          type="text"
-          required
-          autoComplete="off"
-          placeholder="Name*"
-          name="name"
-          value={customerName}
-          onChange={(e) => {
-            setCustomerName(e.target.value);
-          }}
-          className="  border-gray-300 text-sm p-1 w-60 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
-        />
+          <input
+            type="text"
+            required
+            autoComplete="off"
+            placeholder="Name*"
+            name="name"
+            value={customerName}
+            onChange={(e) => {
+              setCustomerName(e.target.value);
+            }}
+            className="  border-gray-300 text-sm p-1 w-60 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
+          />
         </div>
         <div>
 
-        
-        
-        <input
-          type="text"
-          autoComplete="off"
-          placeholder="Company"
-          name="company"
-          value={company}
-          onChange={(e) => {
-            setCompany(e.target.value);
-          }}
-          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
-        />
+
+
+          <input
+            type="text"
+            autoComplete="off"
+            placeholder="Company"
+            name="company"
+            value={company}
+            onChange={(e) => {
+              setCompany(e.target.value);
+            }}
+            className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
+          />
         </div>
-        
+
         <div>
-        <input
-          type="text"
-          required
-          autoComplete="off"
-          placeholder="Address*"
-          name="address"
-          value={address}
-          onChange={(e) => {
-            setAddress(e.target.value);
-          }}
-          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
-        />
+          <input
+            type="text"
+            required
+            autoComplete="off"
+            placeholder="Address*"
+            name="address"
+            value={address}
+            onChange={(e) => {
+              setAddress(e.target.value);
+            }}
+            className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9"
+          />
         </div>
         <br />
       </div>
 
       <div className="container mx-auto flex m-6 mt-2 justify-center">
         <div>
-        <select
-          id="defValue"
-          onChange={handleProduct}
-          defaultValue="DEFAULT"
-          name="productName"
-          className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9 w-44"
-        >
-          <option disabled value={"DEFAULT"}>
-            Select Product
-          </option>
-          {products.map((product, index) => {
-            return (
-              <option key={index} value={product.pid}>
-                {product.productName} ({product.price})
-              </option>
-            );
-          })}
-        </select>
+          <select
+            id="defValue"
+            onChange={handleProduct}
+            defaultValue="DEFAULT"
+            name="productName"
+            className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9 w-44"
+          >
+            <option disabled value={"DEFAULT"}>
+              Select Product
+            </option>
+            {products.map((product, index) => {
+              return (
+                <option key={index} value={product.pid}>
+                  {product.productName} ({product.price})
+                </option>
+              );
+            })}
+          </select>
         </div>
 
         <select
@@ -194,16 +194,16 @@ const Sellproduct = () => {
             Batch No.
           </option>
           {products.map((product, index) => {
-            if(product.productId === Number(oneItem.productName)){
+            if (product.productId === Number(oneItem.productName)) {
               return (
-                <option key={index} value={product.batchNumber} className ="text-sm text-gray-400">
+                <option key={index} value={product.batchNumber} className="text-sm text-gray-400">
                   {product.batchNumber}
                 </option>
               );
             }
           })}
         </select>
-        
+
         <input
           type="text"
           required
@@ -214,7 +214,7 @@ const Sellproduct = () => {
           className="  border-gray-300 text-sm p-1 border-2 m-2 focus:outline-none focus:border-blue-500 rounded-md text-gray-500 h-9 w-28"
         />
         <br />
-        
+
 
         <div className="text-center">
           <button
@@ -226,13 +226,24 @@ const Sellproduct = () => {
           </button>
         </div>
       </div>
+      <div className=" flex justify-center">
+        <table className="w-full  border-2 shadow">
+          {isItemAdded &&
+            <thead>
+              <tr className=" text-white" style={{ backgroundColor: '#5c94ed' }}>
+                <th className="p-2 text-left">Name</th>
+                <th className="p-2 text-left">Quantity</th>
+                <th className="p-2 text-left">Unit Price</th>
+                <th className="p-2 text-left">Total</th>
+              </tr>
+            </thead>}
+          {isItemAdded && (
+            <tbody>
 
-      {isItemAdded && (
-        <div>
-          {totalItems.map((product, index) => {
-            return (
-              <div key={index}>
-                <label className="flex">
+              {totalItems.map((product, index) => {
+                return (
+                  <>
+                    {/* <label className="flex">
                   <div>Name : &nbsp;</div>
                   <div key={product?.productName}> {product?.productName} </div>
                 </label>
@@ -244,12 +255,32 @@ const Sellproduct = () => {
                   <div>Unit Price : &nbsp;</div>
                   <div key={product.price}> {product?.price} </div>
                 </label>
-                <br />
+                <br /> */}
+
+                    <tr key={index}>
+                      <td className="pl-2" key={product?.productName}>{product?.productName}</td>
+                      <td className="p-2" key={product?.quantity}>{product?.quantity}</td>
+                      <td className="p-2" key={product.price}>{product?.price}</td>
+                    </tr>
+                  </>
+                );
+              })}
+              
+            </tbody>
+          )}
+                </table>
+                </div>
+          {isItemAdded &&
+            <>
+              <div className="flex flex-row-rev justify-end">
+
+                <div>Sub Total</div> <br />
+                <div>VAT 13%</div> <br/>
+                <div>Grand Total</div><br/>
               </div>
-            );
-          })}
-        </div>
-      )}
+            </>
+          }
+
       {/* {isItemAdded && <button onClick={() => {
               navigate("invoice");
             }} className='text-black bg-slate-300 rounded-2xl'
@@ -260,17 +291,20 @@ const Sellproduct = () => {
 
       {/* {isItemAdded && <a target={"_blank"} href="http://localhost:3000/mainpage/sellproduct/invoice">GENERATE INVOICE</a>} */}
       {isItemAdded && (
-        <button
-          className="uppercase"
-          onClick={
-            handleSellProduct
-            // navigate("invoice", {
-            //   state: {totalItems, buyerDetail}
-            // })
-          }
-        >
-          Sell And Generate Invoice
-        </button>
+        <div className="flex flex-row-reverse w-full">
+
+          <button
+            className="button-green mt-6"
+            onClick={
+              handleSellProduct
+              // navigate("invoice", {
+              //   state: {totalItems, buyerDetail}
+              // })
+            }
+          >
+            Sell / Invoice
+          </button>
+        </div>
       )}
       {/* <Invoice /> */}
     </div>

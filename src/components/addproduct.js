@@ -140,7 +140,7 @@ const Addproduct = () => {
 
     const handleSubmitAddExistingProduct = (event) => {
         event.preventDefault();
-        if(productName==''||manufacturer==''||quantity==''||batchNo==''||target==''||unitPrice==''||category==''){
+        if(productName==''||batchNo==''||unitPrice==''){
             alert("Please Select All Values")
             return;
         }
