@@ -230,14 +230,13 @@ const Sellproduct = () => {
         </div>
       </div>
       <div className=" flex justify-center">
-        <table className="w-full  border-2 shadow">
+        <table className="w-4/5  border-2 shadow">
           {isItemAdded &&
             <thead>
               <tr className=" text-white" style={{ backgroundColor: '#5c94ed' }}>
                 <th className="p-2 text-left">Name</th>
                 <th className="p-2 text-left">Quantity</th>
                 <th className="p-2 text-left">Unit Price</th>
-                <th className="p-2 text-left">Total</th>
               </tr>
             </thead>}
           {isItemAdded && (
@@ -273,16 +272,7 @@ const Sellproduct = () => {
           )}
                 </table>
                 </div>
-          {isItemAdded &&
-            <>
-              <div className="flex flex-row-rev justify-end">
-
-                <div>Sub Total</div> <br />
-                <div>VAT 13%</div> <br/>
-                <div>Grand Total</div><br/>
-              </div>
-            </>
-          }
+         
 
       {/* {isItemAdded && <button onClick={() => {
               navigate("invoice");
@@ -294,8 +284,8 @@ const Sellproduct = () => {
 
       {/* {isItemAdded && <a target={"_blank"} href="http://localhost:3000/mainpage/sellproduct/invoice">GENERATE INVOICE</a>} */}
       {isItemAdded && (
-        <div className="flex flex-row-reverse w-full">
-
+        <div className="flex justify-end w-4/5 ml-28">
+          <div class = ''>
           <button
             className="button-green mt-6"
             onClick={
@@ -305,8 +295,9 @@ const Sellproduct = () => {
               // })
             }
           >
-            Sell / Invoice
+           <i className="fa fa-shopping-cart mr-1"></i> Sell Products
           </button>
+            </div>
         </div>
       )}
       {/* <Invoice /> */}

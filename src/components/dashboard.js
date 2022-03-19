@@ -285,12 +285,12 @@ const Dashboard = () => {
 
             <Chart values={option} selectedProduct={selectedProduct} />
 
-            <div className="flex justify-center mt-3">
+            <div className="flex justify-center mt-3 h-10">
                 <button className="px-2 text-base mr-4 py-1 text-white rounded-md" style={{ backgroundColor: '#1877f2' }} onClick={handleTotal}>Total Sale</button>
                 <button className="px-2 text-base text-white rounded-md" style={{ backgroundColor: '#42b72a' }} onClick={handleEach}>Individual Product</button>
                 {!isTotalActive &&
-                    <select onChange={handleSelectedProduct} id="defValue" defaultValue={"DEFAULT"} name="productName" className="w-30 h-9 rounded-lg bg-zinc-100 border-black justify-start">
-                        <option disabled value={"DEFAULT"}>--SELECT PRODUCT--</option>
+                    <select onChange={handleSelectedProduct} id="defValue" defaultValue={"DEFAULT"} name="productName"   className="text-base text-gray-500 px-1 ml-3 border-2 h-9 w-36 outline-none  border-blue-400 rounded-md">
+                        <option disabled value={"DEFAULT"}>Select Product</option>
                         {products.map((product, index) => {
                             return (
                                 <option key={index} value={product.productName}>
