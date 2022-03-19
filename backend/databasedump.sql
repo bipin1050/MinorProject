@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `inventory` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `inventory`;
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: inventory
+-- Host: localhost    Database: inventory
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,9 +27,10 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `billnumber` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
+  `company` varchar(45) DEFAULT NULL,
   `address` varchar(45) NOT NULL,
   PRIMARY KEY (`billnumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +43,7 @@ DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `employee` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,7 +59,7 @@ CREATE TABLE `product` (
   `category` varchar(50) NOT NULL,
   `manufacturer` varchar(50) NOT NULL,
   PRIMARY KEY (`productId`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,13 +71,13 @@ DROP TABLE IF EXISTS `productdate`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productdate` (
   `productId` int NOT NULL,
-  `batchNumber` int NOT NULL,
-  `manufactureDate` date NOT NULL,
-  `entryDate` date NOT NULL,
-  `expiryDate` date NOT NULL,
+  `batchNumber` varchar(50) NOT NULL,
+  `manufactureDate` date DEFAULT NULL,
+  `entryDate` date DEFAULT NULL,
+  `expiryDate` date DEFAULT NULL,
   KEY `productId_idx` (`productId`),
   CONSTRAINT `productId` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +92,7 @@ CREATE TABLE `productlocation` (
   `location` varchar(45) NOT NULL,
   KEY `fk_idx` (`productId`),
   CONSTRAINT `fkk` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,11 +104,11 @@ DROP TABLE IF EXISTS `productnumber`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productnumber` (
   `productId` int NOT NULL,
-  `batchNumber` int NOT NULL,
+  `batchNumber` varchar(50) NOT NULL,
   `quantity` int NOT NULL,
   KEY `productId_idx` (`productId`),
   CONSTRAINT `productI` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,11 +120,11 @@ DROP TABLE IF EXISTS `productprice`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productprice` (
   `productId` int NOT NULL,
-  `batchNumber` int NOT NULL,
+  `batchNumber` varchar(50) NOT NULL,
   `price` int NOT NULL,
   KEY `pid_idx` (`productId`),
   CONSTRAINT `pid` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +139,7 @@ CREATE TABLE `producttarget` (
   `target` varchar(45) NOT NULL,
   KEY `fk_idx` (`pid`),
   CONSTRAINT `fk` FOREIGN KEY (`pid`) REFERENCES `product` (`productId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,10 +151,11 @@ DROP TABLE IF EXISTS `salesdetail`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `salesdetail` (
   `billnumber` int NOT NULL,
-  `productId` int NOT NULL,
+  `productName` varchar(50) NOT NULL,
   `quantity` int NOT NULL,
-  `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `price` int NOT NULL,
+  `salesDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -163,4 +167,4 @@ CREATE TABLE `salesdetail` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-21 14:32:58
+-- Dump completed on 2022-03-19 21:24:33
