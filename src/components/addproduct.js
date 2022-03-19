@@ -39,7 +39,7 @@ const Addproduct = () => {
         setManufacturer(e.target.value);
     }
     const handleBatchNo = (e) => {
-        setBatchNo(parseInt(e.target.value));
+        setBatchNo(e.target.value);
     }
     const handleManufatureDate = (e) => {
         setManufactureDate(e.target.value);
@@ -51,11 +51,11 @@ const Addproduct = () => {
         setExpiryDate(e.target.value);
     }
     const handleUnitPrice = (e) => {
-        setUnitPrice(parseInt(e.target.value));
+        setUnitPrice(e.target.value);
     }
     const handleQuantity = (e) => {
         if (e.target.value > 0) {
-            setQuantity(parseInt(e.target.value));
+            setQuantity(e.target.value);
         } else {
             toast("Quantity must be greater than 0");
         }
@@ -96,6 +96,7 @@ const Addproduct = () => {
             icon: "success",
             buttons: "OK"
         })
+        document.getElementById("makedef").value = "DEFAULT";
     }
 
     const handleSelect = (event) => {
@@ -201,7 +202,7 @@ const Addproduct = () => {
                                     <br />
                                     <input type="text" placeholder="Manufacturer" value={manufacturer} onChange={handleManufacturer} className="  focus:shadow-md  border-gray-300 w-52 text-sm p-1 mb-4 border-2 focus:outline-none focus:border-blue-400 rounded-md text-gray-500" />
                                     <br />
-                                    <input type="number" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="  border-gray-300 text-sm p-1 w-52 border-2 mb-4 focus:outline-none focus:border-blue-400 rounded-md text-gray-500 focus:shadow-md " /><br />
+                                    <input type="text" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="  border-gray-300 text-sm p-1 w-52 border-2 mb-4 focus:outline-none focus:border-blue-400 rounded-md text-gray-500 focus:shadow-md " /><br />
                                     
                                     <input type="number" placeholder="Unit Price" value={unitPrice} onChange={handleUnitPrice} className="  border-gray-300 focus:shadow-md  text-sm p-1 w-52 border-2 mb-4  focus:outline-none focus:border-blue-400 rounded-md text-gray-500" /><br />
                                     
@@ -235,8 +236,7 @@ const Addproduct = () => {
                         }</div>}
                         {isExistingSelected && <div className="pt-5">{
                             <div className="container mx-auto text-center">
-                                {/* <input type ="text" placeholder="Product Name" className="h-9 w-full rounded-lg bg-zinc-100 border-black"/><br/><br/> */}
-                                <select defaultValue={'DEFAULT'} onChange={handleProductName} className="w-52 text-sm pl-1 mb-4 text-gray-400 py-1   border-2 focus:outline-none focus-within:border-blue-500 rounded-md">
+                                <select id="makedef" defaultValue={'DEFAULT'} onChange={handleProductName} className="w-52 text-sm pl-1 mb-4 text-gray-400 py-1   border-2 focus:outline-none focus-within:border-blue-500 rounded-md">
                                     <option value="DEFAULT" disabled className='text-gray-400'>Select Product</option>
                                     {products.map((product) => {
                                         return (
@@ -246,7 +246,7 @@ const Addproduct = () => {
                                 <div className="text-center">
 
 
-                                    <input type="number" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="  border-gray-300 w-52 text-sm mb-4 p-1 border-2 focus:outline-none focus:border-blue-400 rounded-md text-gray-500 focus:shadow-md " /><br />
+                                    <input type="text" placeholder="Batch Number" value={batchNo} onChange={handleBatchNo} className="  border-gray-300 w-52 text-sm mb-4 p-1 border-2 focus:outline-none focus:border-blue-400 rounded-md text-gray-500 focus:shadow-md " /><br />
                                     <input type="number" placeholder="Unit Price" value={unitPrice} onChange={handleUnitPrice} className="  border-gray-300 w-52 text-sm p-1 border-2 focus:outline-none  mb-4 focus:border-blue-400 rounded-md text-gray-500 focus:shadow-md" /><br />
                                     <input type="number" placeholder="Quantity" value={quantity} onChange={handleQuantity} className="  border-gray-300 focus:shadow-md text-sm p-1 border-2 w-52 focus:outline-none mb-4 focus:border-blue-400 rounded-md text-gray-500" /><br />
                                     <label className="text-sm text-gray-600 ml-2">Manufacturer Date</label><br />

@@ -34,7 +34,7 @@ router.post('/existing',(req,res)=>{
         result=result[result.length-1]
         productId=result.productId
         console.log(productId)
-        if(expiryDate===undefined)
+        if(expiryDate===null)
         {
             connection.execute('select price from productprice where productId=?',[productId],(error,result)=>{
                 if (error) return res.json({error:error})

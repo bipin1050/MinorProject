@@ -12,10 +12,11 @@ const Saleshistory = () => {
         axios.get("http://localhost:5000/checkout/salesDetail")
         .then((res)=>{
             setSoldProducts(res.data)
+            setIsLoading(false)
         })
     },[])
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [searchValue, setSearchValue] = useState("");
 
     const handleInputValue = (event) => {

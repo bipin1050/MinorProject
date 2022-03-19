@@ -39,16 +39,16 @@ const Invoice = () => {
         </div>
 
         <div className="flex justify-center items-center mt-8">
-            <h3>Company Name</h3>
+            <h3>ABD Associates</h3>
         </div>
         <div className="flex justify-center items-center">
-            <p>Address</p>
+            <p>Pulchowk, Lalitpur</p>
         </div>
         <div className="flex justify-center items-center">
-            <p>Pan no.</p>
+            <p>Pan no. : 1</p>
         </div>
         <div className="flex justify-center items-center">
-            <p>Tel :&nbsp;</p>
+            <p>Tel : 01-5543078</p>
         </div>
 
         <div className="flex justify-between mt-12">
