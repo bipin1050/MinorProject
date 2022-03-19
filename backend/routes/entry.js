@@ -40,7 +40,7 @@ router.post('/existing',(req,res)=>{
                 if (error) return res.json({error:error})
                 let [pricee]=result
                 pricee=pricee.price
-                if(pricee===price)
+                if(parseInt(pricee)===parseInt(price))
                 {
                     connection.execute('update  productnumber set quantity=quantity+?  where productId=?',[quantity,productId],(error,result)=>{
                         if(error) return res.json({error:error});
