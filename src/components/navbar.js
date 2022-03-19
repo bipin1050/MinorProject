@@ -142,7 +142,7 @@ export default function DashboardNav({ children }) {
             <span className="font"> Inventory Manager </span>
           </Typography>
           <Typography>
-            <button onClick={handleLogout} className = "w-20 fixed right-2 top-5 hover:text-gray-200 active:text-white">Logout</button>
+            <button onClick={handleLogout} className = "w-20 fixed right-2 top-5 hover:text-gray-200 active:text-white"><i className="fa fa-sign-out"></i> Logout</button>
           </Typography>
         </Toolbar>
       </AppBar>
