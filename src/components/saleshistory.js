@@ -11,8 +11,6 @@ const Saleshistory = () => {
         })
     },[])
 
-    // console.log(soldProducts)
-
     return ( 
         <div>
             <tbody>
@@ -27,7 +25,18 @@ const Saleshistory = () => {
                         <td className="p-2">Sales Date</td>
                 </tr>
                 {soldProducts && soldProducts.map((product, idx) => {
-                    return (<tr key={idx}>
+                    let date= new Date(product.salesDate);
+                    if (date.getMonth() + 1 <= 9) {
+                        if (date.getDate() <= 9) {
+                            date = date.getFullYear() + '-0' + (date.getMonth() + 1) + '-0' + date.getDate();
+                        }
+                        else {
+                            date = date.getFullYear() + '-0' + (date.getMonth() + 1) + '-' + date.getDate();
+                        }
+                    }
+                    return (
+                    <tr key={idx}>
+                        {console.log(idx)}
                         <td className="p-2">{product.billnumber}</td>
                         <td className="p-2">{product.name}</td>
                         <td className="p-2">{product.address}</td>
@@ -35,7 +44,7 @@ const Saleshistory = () => {
                         <td className="p-2">{product.productName}</td>
                         <td className="p-2">{product.price}</td>
                         <td className="p-2">{product.quantity}</td>
-                        <td className="p-2">{product.salesDate.substr(0,10)}</td>
+                        <td className="p-2">{date}</td>
                     </tr>)
                 })}
             </tbody>

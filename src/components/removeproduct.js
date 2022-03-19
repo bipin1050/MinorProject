@@ -31,7 +31,6 @@ const Removeproduct = () => {
     })
   };
 
-console.log(batchNo)
   const handleSubmitRemoveProduct = (event) => {
     event.preventDefault();
    if(productName ==''|| batchNo == ''||quantity==''){
@@ -40,7 +39,6 @@ console.log(batchNo)
    }
 
     let conform = window.confirm("Are you sure want to delete?");
-    console.log(conform)
     let obj = {};
     if(conform){
     //const data = new FormData(event.currentTarget);

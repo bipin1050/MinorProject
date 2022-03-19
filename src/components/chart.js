@@ -11,7 +11,7 @@ const Chart = ({values, selectedProduct}) => {
     const tempData2 = [];
     const [isData, setIsData] = useState(false);
 
-    console.log(selectedProduct)
+    // console.log(selectedProduct)
     useEffect(()=>{
         axios.get("http://localhost:5000/dashboard")
         .then((res)=>{
@@ -37,7 +37,7 @@ const Chart = ({values, selectedProduct}) => {
             }
             setIsData(true)
             setDataPoints2(tempData2)
-            console.log(dataPoints2)
+            // console.log(dataPoints2)
         })
     },[values,selectedProduct])
     

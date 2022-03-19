@@ -29,7 +29,8 @@ const Login = () => {
                 title: "Status",
                 text: "Logged In",
                 icon: "success",
-                timer: 2000
+                button: null,
+                timer: 1200
             });
             auth.login(res.data.accessToken);
             navigate(redirectPath)

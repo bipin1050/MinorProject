@@ -78,7 +78,12 @@ const Sellproduct = () => {
   
   const handleSellProduct = (event) => {
     event.preventDefault();
-    console.log("entered in function")
+    if(customerName ==''|| address==''){
+      alert('Fill customer detail first')
+      return;
+    }
+    let confirm = window.confirm("Are you sure want to delete?");
+    if(!confirm){return}
     //const data = new FormData(event.currentTarget);
     //this is to sent to backend
     // console.log(obj)
@@ -113,7 +118,7 @@ const Sellproduct = () => {
           type="text"
           required
           autoComplete="off"
-          placeholder="Name"
+          placeholder="Name*"
           name="name"
           value={customerName}
           onChange={(e) => {
@@ -144,7 +149,7 @@ const Sellproduct = () => {
           type="text"
           required
           autoComplete="off"
-          placeholder="Address"
+          placeholder="Address*"
           name="address"
           value={address}
           onChange={(e) => {
