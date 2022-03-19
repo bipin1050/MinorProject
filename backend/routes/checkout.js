@@ -76,11 +76,26 @@ router.post("/",(req,res)=>{
         }
     })
 })
+// router.get("/salesdetail",(req,res)=>{
+//     connection.execute('select * from salesdetail natural join customer ',(err,result)=>{
+//         if(err) res.json({err:err})
+//         console.log(result)
+//         res.json(result)
+//     })
+// })
 router.get("/salesdetail",(req,res)=>{
-    connection.execute('select * from salesdetail natural join customer ',(err,result)=>{
+    connection.execute('select * from salesdetail natural join customer order by billnumber desc ',(err,result)=>{
         if(err) res.json({err:err})
         console.log(result)
         res.json(result)
     })
 })
+// router.post("/salesdetail/val",(req,res)=>{
+//     const {val}=req.body;
+//     connection.execute('select * from salesdetail natural join customer limit(?,50)',[(val-1)*50+1],(err,result)=>{
+//         if(err) res.json({err:err})
+//         console.log(result)
+//         res.json(result)
+//     })
+// })
 module.exports=router;

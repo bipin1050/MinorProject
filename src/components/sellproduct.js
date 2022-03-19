@@ -20,6 +20,8 @@ const Sellproduct = () => {
 
   const isItemAdded = totalItems.length > 0;
 
+  let billno;
+
   var today = new Date(),
   date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
@@ -99,6 +101,7 @@ const Sellproduct = () => {
           icon : "success",
           buttons :"Get Invoice"
         })
+        // billno = res.body.billno;
         navigate("invoice", {
               state: {totalItems, customer}
             })

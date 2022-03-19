@@ -75,13 +75,13 @@ const Signup = () => {
                             <div className='flex flex-col items-center m-4'>
                                 <div className='text-3xl text-gray-500 justify-center'>Create User</div><hr />
                                 <div className='text-gray-500 flex flex-col  m-4'>
-                                    <label className=' '>Create Username</label>
+                                    <label className=' '>Username</label>
                                     <input autoComplete="off" type="text" name="username" placeholder='Minimum 5 character' required className='rounded-md w-56 px-2 py-1  focus:outline-none focus:border-blue-400 border-2 mb-4 focus:shadow-lg' />
                                     <label>Choose Password</label>
                                     <input type="password" placeholder = "*******"name="password" required className='rounded-md w-56 px-2 py-1  focus:outline-none focus:border-blue-400 border-2 mb-4 focus:shadow-lg' />
                                     <label>Confirm Password</label>
                                     <input type="password" placeholder = "*******"name="passwordConfirm" required className='rounded-md w-56 px-2 py-1  focus:outline-none focus:border-blue-400 border-2 mb-4 focus:shadow-lg' />
-                                    <button type="submit" className='button-blue'><i className="fa fa-user-plus"></i> Sign Up</button>
+                                    <button type="submit" className='button-blue'><i className="fa fa-user-plus"></i>Create</button>
                                 </div>
                             </div>
                         </form>

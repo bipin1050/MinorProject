@@ -86,7 +86,6 @@ const Searchproduct = (props) => {
             <tr><td className="p-2" colSpan={7}><p className="text-sm text-center text-gray-500">Loading...</p></td></tr>
           }
 
-
           {(!isLoading && computedProducts) && computedProducts.map((product, idx) => {
             return (<tr key={idx}>
               <td className="p-2">{product.productName}</td>
